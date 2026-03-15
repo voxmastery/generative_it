@@ -1,0 +1,64 @@
+.bg-cover {
+    background-size: cover;
+    background-position: center;
+  }
+  .container-custom {
+    max-width: 1300px;
+  }
+  
+
+  
+  .our-team {
+    background-color: white;
+  }
+  
+  .team-quote {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.486);
+    border-radius: 15px;
+    padding:10px;
+    background-color: #ffffff;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .team-quote:hover {
+    background-color: #1f78b4;
+    color: antiquewhite;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+  }
+  
+  .category {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #3498db;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+  }
+  
+  .team-quote:hover .category {
+    color: antiquewhite;
+  }
+  
+  .icon {
+    width: 70px;
+    transition: transform 0.3s ease;
+  }
+  
+  .team-quote:hover .icon {
+    transform: rotate(360deg);
+  }
+  
+  .team-quote p {
+    font-weight: normal;
+    margin-top: 10px;
+    color: #555;
+    transition: color 0.3s ease;
+  }
+  
+  .team-quote:hover p {
+    color: antiquewhite;
+  }
+  
+
+  

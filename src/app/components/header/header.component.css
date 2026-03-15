@@ -1,0 +1,89 @@
+/* Header – glassmorphism nav (Cal.com / Vercel / Dub style) */
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  min-height: var(--nav-height, 72px);
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.container-custom {
+  max-width: var(--container-max, 1280px);
+}
+
+.logo-img {
+  max-height: 40px;
+  width: auto;
+}
+
+.brand-text {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin-left: 10px;
+  color: #fff;
+}
+
+.navbar-dark .navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
+
+.navbar-dark .navbar-toggler-icon {
+  filter: invert(1);
+}
+
+.nav-links {
+  gap: 0.25rem;
+}
+
+.navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.navbar-nav .nav-link.active {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  font-weight: 600;
+}
+
+.nav-link-cta {
+  background: var(--brand-primary);
+  color: #fff !important;
+  margin-left: 0.5rem;
+}
+
+.nav-link-cta:hover {
+  background: var(--brand-primary-hover) !important;
+  color: #fff !important;
+}
+
+@media (max-width: 768px) {
+  .brand-text {
+    font-size: 0.9rem;
+  }
+  .navbar-nav .nav-link {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+  .nav-link-cta {
+    margin-left: 0;
+    margin-top: 0.25rem;
+  }
+}
