@@ -1,64 +1,30 @@
-.bg-cover {
-    background-size: cover;
-    background-position: center;
-  }
-  .container-custom {
-    max-width: 1300px;
-  }
-  
+.page-hero { padding: 160px 40px 60px; text-align: center; }
 
-  
-  .our-team {
-    background-color: white;
-  }
-  
-  .team-quote {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.486);
-    border-radius: 15px;
-    padding:10px;
-    background-color: #ffffff;
-    transition: box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
-  }
-  
-  .team-quote:hover {
-    background-color: #1f78b4;
-    color: antiquewhite;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    transform: scale(1.05);
-  }
-  
-  .category {
-    text-align: center;
-    font-weight: bold;
-    font-size: 1.2em;
-    color: #3498db;
-    margin-bottom: 10px;
-    transition: color 0.3s ease;
-  }
-  
-  .team-quote:hover .category {
-    color: antiquewhite;
-  }
-  
-  .icon {
-    width: 70px;
-    transition: transform 0.3s ease;
-  }
-  
-  .team-quote:hover .icon {
-    transform: rotate(360deg);
-  }
-  
-  .team-quote p {
-    font-weight: normal;
-    margin-top: 10px;
-    color: #555;
-    transition: color 0.3s ease;
-  }
-  
-  .team-quote:hover p {
-    color: antiquewhite;
-  }
-  
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 40px 80px;
+}
+.service-card {
+  padding: 32px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: default;
+}
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+.service-card .svc-icon { font-size: 36px; margin-bottom: 16px; }
+.service-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+.service-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
 
-  
+@media (max-width: 992px) {
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 576px) {
+  .services-grid { grid-template-columns: 1fr; padding: 0 24px 60px; }
+  .page-hero { padding: 140px 24px 40px; }
+}
