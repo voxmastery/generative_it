@@ -170,30 +170,30 @@ button {
 }
 
 .shape-sq-outer {
-  width: 80px;
-  height: 80px;
-  border: 2px solid var(--border-frost);
-  border-radius: 18px;
+  width: 100px;
+  height: 100px;
+  border: 2.5px solid rgba(0, 0, 0, 0.14);
+  border-radius: 14px;
 }
 
 .shape-sq-inner {
-  width: 48px;
-  height: 48px;
-  border: 2px solid var(--border-frost);
+  width: 62px;
+  height: 62px;
+  border: 2px solid rgba(0, 0, 0, 0.10);
   border-radius: 10px;
 }
 
 .shape-circle-outer {
   width: 90px;
   height: 90px;
-  border: 2px solid var(--border-frost);
+  border: 2.5px solid rgba(0, 0, 0, 0.14);
   border-radius: 50%;
 }
 
 .shape-circle-inner {
-  width: 50px;
-  height: 50px;
-  border: 2px solid var(--border-frost);
+  width: 55px;
+  height: 55px;
+  border: 2px solid rgba(0, 0, 0, 0.10);
   border-radius: 50%;
 }
 
@@ -207,7 +207,7 @@ button {
 .shape-cross::after {
   content: "";
   position: absolute;
-  background: var(--border-frost);
+  background: rgba(0, 0, 0, 0.10);
 }
 
 .shape-cross::before {
@@ -225,26 +225,26 @@ button {
 }
 
 .shape-dot {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  background: var(--border-frost);
+  background: rgba(0, 0, 0, 0.12);
 }
 
 /* ---------- Float keyframe animations ---------- */
 @keyframes float1 {
   0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-18px) rotate(6deg); }
+  50% { transform: translateY(-28px) rotate(5deg); }
 }
 
 @keyframes float2 {
   0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-14px) rotate(-4deg); }
+  50% { transform: translateY(22px) rotate(-4deg); }
 }
 
 @keyframes float3 {
   0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-22px) rotate(8deg); }
+  50% { transform: translateY(-18px) rotate(3deg); }
 }
 
 .float-1 { animation: float1 6s ease-in-out infinite; }
