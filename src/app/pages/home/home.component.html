@@ -1,299 +1,203 @@
-<section class="hero-section">
-  <!-- LAYER 0: ShaderGradient 3D Background -->
-  <iframe
-    class="hero-shader-bg"
-    src="https://www.shadergradient.co/customize?animate=on&axesHelper=off&bgColor1=%231C2331&bgColor2=%231C2331&brightness=1.1&cAzimuthAngle=180&cDistance=4.4&cPolarAngle=80&cameraZoom=1&color1=%231F78B4&color2=%231C2331&color3=%23F46D25&embedMode=off&envPreset=dawn&fov=45&gizmoHelper=hide&grain=on&lightType=3d&pixelDensity=1&positionX=-0.5&positionY=0&positionZ=0&reflection=0.1&rotationX=0&rotationY=10&rotationZ=-50&shader=defaults&type=waterPlane&uDensity=1.2&uFrequency=5.5&uSpeed=0.3&uStrength=3&uTime=0&wireframe=false&zoomOut=false"
-    title="Animated gradient background"
-    loading="eager"
-    aria-hidden="true"
-    tabindex="-1">
-  </iframe>
+<!-- ============ SECTION 1: HERO ============ -->
+<section class="hero">
+  <!-- Wireframe shapes -->
+  <div class="shape shape-sq-outer float-1" style="top:12%;left:6%" data-speed="-0.15"></div>
+  <div class="shape shape-circle-inner float-2" style="top:22%;right:8%" data-speed="-0.1"></div>
+  <div class="shape shape-cross float-3" style="top:60%;left:10%" data-speed="-0.08"></div>
+  <div class="shape shape-dot float-4" style="top:35%;left:18%" data-speed="-0.12"></div>
+  <div class="shape shape-sq-inner float-5" style="top:55%;right:12%" data-speed="-0.1"></div>
+  <div class="shape shape-circle-outer float-1" style="top:75%;right:6%" data-speed="-0.15"></div>
+  <div class="shape shape-dot float-2" style="top:80%;left:20%" data-speed="-0.08"></div>
 
-  <!-- LAYER 1: Dark radial overlay -->
-  <div class="hero-overlay"></div>
-
-  <!-- LAYER 2: Noise grain texture -->
-  <div class="hero-noise"></div>
-
-  <!-- LAYER 3: Content -->
-  <div class="container hero-content">
-    <div class="hero-badge">
-      <span class="badge-pulse"></span>
-      <span class="badge-text">Now Serving Clients in 12+ Countries</span>
-    </div>
-
-    <h1 class="hero-headline">
-      Build digital products<br>
-      <span class="hero-headline-gradient">that actually deliver.</span>
-    </h1>
-
-    <p class="hero-subtext">
-      We partner with startups and enterprises to design, develop, and scale
-      web applications, mobile products, and growth strategies — from first
-      wireframe to post-launch optimization.
-    </p>
-
-    <div class="hero-ctas">
-      <a routerLink="/contacts" class="hero-btn-primary">
-        Start Your Project
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </a>
-      <a routerLink="/services" class="hero-btn-ghost">
-        View Our Work
-      </a>
-    </div>
-
-    <div class="hero-social-proof">
-      <div class="proof-item">
-        <span class="proof-number">120+</span>
-        <span class="proof-label">Projects Shipped</span>
-      </div>
-      <div class="proof-separator"></div>
-      <div class="proof-item">
-        <span class="proof-number">94%</span>
-        <span class="proof-label">On-Time Delivery</span>
-      </div>
-      <div class="proof-separator"></div>
-      <div class="proof-item">
-        <span class="proof-number">4.9★</span>
-        <span class="proof-label">Client Rating</span>
-      </div>
-    </div>
+  <div class="hero-badge">
+    <span class="green-dot"></span>
+    Now Serving Clients in 12+ Countries
   </div>
 
-  <!-- LAYER 4: Bottom gradient fade into next section -->
-  <div class="hero-bottom-fade"></div>
+  <h1 class="hero-title">
+    Build <span class="thin">digital products</span><br>
+    that actually <strong>deliver.</strong>
+  </h1>
+
+  <p class="hero-sub">
+    We partner with <strong>startups</strong> and <strong>enterprises</strong> to design,
+    develop, and scale <strong>web applications</strong>, <strong>mobile products</strong>,
+    and <strong>growth strategies</strong> — from first wireframe to post-launch optimization.
+  </p>
+
+  <a class="btn-pill" routerLink="/contacts">Start Your Project →</a>
 </section>
 
-<section class="section section-light" id="services">
-  <div class="container container-custom">
-    <div class="row">
-      <div class="col-md-12 text-center section-header">
-        <h2 class="section-title">Our Services</h2>
-        <p class="section-subtitle">Full-stack digital solutions for modern businesses</p>
-      </div>
-    </div>
-    <div class="row pt-5 g-4">
-    <div class="col-md-3 col-6">
-      <div class="service-item card-lift text-center">
-        <img src="../assets/images/app.jpg" class="img-fluid rounded-circle" alt="App Development">
-        <h3 class="mt-3">App Development</h3>
-        <p class="padded-paragraph">We specialize in mobile development services tailored to meet the unique needs of
-          our clients.</p>
-      </div>
-    </div>
-    <div class="col-md-3 col-6">
-      <div class="service-item card-lift text-center">
-        <img src="../assets/images/webb.jpg" class="img-fluid rounded-circle" alt="Web Development">
-        <h3 class="mt-3">Web Development</h3>
-        <p class="padded-paragraph">We specialize in web development services tailored to meet the unique needs of our
-          clients.</p>
-      </div>
-    </div>
-    <div class="col-md-3 col-6">
-      <div class="service-item card-lift text-center">
-        <img src="../assets/images/marketing.webp" class="img-fluid rounded-circle" alt="Digital Marketing">
-        <h3 class="mt-3">Digital Marketing</h3>
-        <p class="padded-paragraph">We specialize in marketing services tailored to meet the unique needs of our
-          clients.</p>
-      </div>
-    </div>
-    <div class="col-md-3 col-6">
-      <div class="service-item card-lift text-center">
-        <img src="../assets/images/design.jpg" class="img-fluid rounded-circle" alt="Graphics Designing">
-        <h3 class="mt-3">Graphics Designing</h3>
-        <p class="padded-paragraph">We specialize in graphics designing services tailored to meet the unique needs of
-          our clients.</p>
-      </div>
-    </div>
-  </div>
+<!-- ============ SECTION 2: TRUSTED BY ============ -->
+<section class="trusted">
+  <p class="section-label">TRUSTED BY LEADING BRANDS</p>
+  <div class="trusted-logos">
+    <span>Algo Webmind</span>
+    <span>RSS Security</span>
+    <span>Shigma Shine</span>
   </div>
 </section>
 
-<section class="container container-custom development-process">
-  <h3>Best Process</h3>
-  <h2>Our Development Process</h2>
-  <div class="process-steps ">
-    <div class="step">
-      <i class="fas fa-bullseye org-col"></i>
-      <h4>Discover</h4>
-      <p>We shape brands through exploration, applying in-depth research to challenge assumptions at every turn.</p>
+<!-- ============ SECTION 3: WHAT WE DO (SERVICES) ============ -->
+<section class="svc-section">
+  <div class="shape shape-sq-outer float-2" style="top:8%;right:7%" data-speed="-0.1"></div>
+  <div class="shape shape-dot float-4" style="top:50%;left:5%" data-speed="-0.08"></div>
+
+  <h2 class="section-title">What we do</h2>
+  <p class="section-sub" style="margin-top:16px;max-width:520px;margin-left:auto;margin-right:auto;">
+    Full-stack <strong>digital solutions</strong> for modern businesses —
+    from <strong>concept</strong> to <strong>launch</strong> and beyond.
+  </p>
+
+  <div class="frost svc-card" style="margin-top:48px;">
+    <div class="svc-grid">
+      <div class="svc-cell">
+        <div class="svc-icon">📱</div>
+        <h3>App Development</h3>
+        <p>Native and cross-platform mobile apps built for performance, reliability, and seamless user experience.</p>
+      </div>
+      <div class="svc-cell">
+        <div class="svc-icon">🌐</div>
+        <h3>Web Development</h3>
+        <p>Responsive, fast-loading websites and web applications using modern frameworks and best practices.</p>
+      </div>
+      <div class="svc-cell">
+        <div class="svc-icon">📈</div>
+        <h3>Digital Marketing</h3>
+        <p>Data-driven strategies across SEO, paid media, and social channels to grow your audience and revenue.</p>
+      </div>
+      <div class="svc-cell">
+        <div class="svc-icon">🎨</div>
+        <h3>Design &amp; Branding</h3>
+        <p>Visual identities, UI/UX design, and creative assets that make your brand memorable and trustworthy.</p>
+      </div>
     </div>
-    <div class="our-development">
-      <p class="p-0 m-0">.........................</p>
-    </div>
-    <div class="step">
-      <i class="fas fa-pencil-alt org-col"></i>
-      <h4>Design</h4>
-      <p>Our design approach is to simplify. We embrace the joy of creating something unique that is easy for end users.
-      </p>
-    </div>
-    <div class="our-development">
-      <p class="p-0 m-0">.........................</p>
-    </div>
-    <div class="step">
-      <i class="fas fa-code org-col"></i>
-      <h4>Build</h4>
-      <p>Using modern technologies, we build with efficiency and skill, creating flexible and scalable business-driven
-        solutions.</p>
-    </div>
-    <div class="our-development">
-      <p class="p-0 m-0">.........................</p>
-    </div>
-    <div class="step">
-      <i class="fas fa-truck org-col"></i>
-      <h4>Deliver</h4>
-      <p>We take an iterative approach to both our work and our practice, always looking for ways to improve what we do.
-      </p>
+  </div>
+
+  <a class="svc-more" routerLink="/services">View all 9 services →</a>
+</section>
+
+<!-- ============ SECTION 4: HOW WE WORK (PROCESS) ============ -->
+<section class="proc-section">
+  <div class="shape shape-circle-inner float-3" style="top:15%;left:8%" data-speed="-0.1"></div>
+  <div class="shape shape-cross float-1" style="top:70%;right:10%" data-speed="-0.08"></div>
+
+  <h2 class="section-title">How we work</h2>
+  <p class="section-sub" style="margin-top:16px;max-width:480px;margin-left:auto;margin-right:auto;">
+    A <strong>proven process</strong> that keeps projects <strong>on time</strong>,
+    <strong>on budget</strong>, and aligned with your goals.
+  </p>
+
+  <div class="frost proc-card" style="margin-top:48px;">
+    <div class="proc-row">
+      <div class="proc-step">
+        <div class="proc-num">1</div>
+        <h4>Discover</h4>
+        <p>We research your market, users, and goals to shape a clear roadmap.</p>
+      </div>
+      <div class="proc-line"></div>
+      <div class="proc-step">
+        <div class="proc-num">2</div>
+        <h4>Design</h4>
+        <p>We craft intuitive interfaces and visual systems users love.</p>
+      </div>
+      <div class="proc-line"></div>
+      <div class="proc-step">
+        <div class="proc-num">3</div>
+        <h4>Build</h4>
+        <p>We engineer scalable, production-ready code with modern tools.</p>
+      </div>
+      <div class="proc-line"></div>
+      <div class="proc-step">
+        <div class="proc-num">4</div>
+        <h4>Deliver</h4>
+        <p>We launch, monitor, and iterate to ensure lasting success.</p>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- ============ SECTION 5: TESTIMONIALS ============ -->
+<section class="tst-section">
+  <div class="shape shape-sq-inner float-5" style="top:10%;left:6%" data-speed="-0.1"></div>
+  <div class="shape shape-dot float-2" style="top:80%;right:8%" data-speed="-0.08"></div>
 
-<div class="why-choose-us" style="padding-bottom: 30px;">
-  <div class="container container-custom bg-bisque pb-5">
-    <div class="row">
-      <div class="col-md-12 pt-5 text-center">
-        <h1 class="mb-5 text-white">Why Choose Us?</h1>
+  <h2 class="section-title">What clients say</h2>
+
+  <div class="tst-grid" style="margin-top:48px;">
+    <div class="frost tst-card">
+      <div class="tst-stars">★★★★★</div>
+      <p class="tst-quote">"They transformed our vision into a polished product in record time. Communication was flawless from day one."</p>
+      <div class="tst-author">
+        <div class="tst-avatar">A</div>
+        <div>
+          <div class="tst-name">Algo Webmind</div>
+          <div class="tst-role">Web Dev</div>
+        </div>
       </div>
     </div>
-    <div class="row px-md-5 choose-card">
-      <div class="col-md-3 d-flex justify-content-center">
-        <!-- Card 1 -->
-        <div class="card border-0">
-          <div class="card-body">
-            <h4 class="text-center">Comprehensive Expertise</h4>
-            <p class="text-center paragraph">Our team offers a holistic approach, covering app development, web
-              development, graphic design, and digital marketing under one roof. By choosing us.</p>
-          </div>
+
+    <div class="frost tst-card">
+      <div class="tst-stars">★★★★★</div>
+      <p class="tst-quote">"Our mobile app exceeded every benchmark. The team's attention to detail and technical skill is outstanding."</p>
+      <div class="tst-author">
+        <div class="tst-avatar">R</div>
+        <div>
+          <div class="tst-name">RSS Security</div>
+          <div class="tst-role">App Dev</div>
         </div>
       </div>
-      <div class="col-md-3 d-flex justify-content-center">
-        <!-- Card 2 -->
-        <div class="card border-0">
-          <div class="card-body">
-            <h4 class="text-center">Creative Excellence</h4>
-            <p class="text-center paragraph">We pride ourselves on our commitment to creativity and innovation. Our
-              graphic design team crafts visually stunning assets that captivate audiences, while our developers bring
-              those designs</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 d-flex justify-content-center">
-        <!-- Card 3 -->
-        <div class="card border-0">
-          <div class="card-body">
-            <h4 class="text-center">Client-Centric Approach</h4>
-            <p class="text-center paragraph">At the heart of everything we do is a dedication to our clients' success.
-              We prioritize clear communication and a thorough understanding of their goals.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 d-flex justify-content-center">
-        <!-- Card 4 -->
-        <div class="card border-0 ">
-          <div class="card-body">
-            <h4 class="text-center">Results-Driven Solutions</h4>
-            <p class="text-center paragraph">Ultimately, our success is measured by the success of our clients. That's
-              why we're committed to delivering tangible results that drive growth and achieve measurable outcomes.</p>
-          </div>
+    </div>
+
+    <div class="frost tst-card">
+      <div class="tst-stars">★★★★★</div>
+      <p class="tst-quote">"Revenue grew 3x within six months of launching our new digital strategy. Highly recommend their marketing team."</p>
+      <div class="tst-author">
+        <div class="tst-avatar">S</div>
+        <div>
+          <div class="tst-name">Shigma Shine</div>
+          <div class="tst-role">Digital Marketing</div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>
 
-
-
-
-<div class="container">
-  <div class="row">
-    <div class="col-md-12 pt-3 text-center">
-      <h1>Our Clients</h1>
-      <p>Our portfolio holds the work of some of the most reputed enterprise & startup brands. <br>All it is missing is
-        YOU!</p>
-    </div>
+<!-- ============ SECTION 6: TECH STACK ============ -->
+<section class="tech-section">
+  <p class="section-label">OUR TECHNOLOGY STACK</p>
+  <div class="tech-pills">
+    <span class="tech-pill">HTML5</span>
+    <span class="tech-pill">CSS3</span>
+    <span class="tech-pill">JavaScript</span>
+    <span class="tech-pill">React</span>
+    <span class="tech-pill">Angular</span>
+    <span class="tech-pill">Node.js</span>
+    <span class="tech-pill">Python</span>
+    <span class="tech-pill">PHP</span>
+    <span class="tech-pill">Flutter</span>
+    <span class="tech-pill">Kotlin</span>
+    <span class="tech-pill">Swift</span>
+    <span class="tech-pill">WordPress</span>
+    <span class="tech-pill">Figma</span>
+    <span class="tech-pill">CorelDraw</span>
   </div>
-  <div class="row justify-content-center align-items-center tech-logos-section">
-    <div class="col-md-2 col-6 tech-logo">
-      <img src="../assets/images/client1.png" class="img-fluid" alt="Client 1">
-    </div>
-    <div class="col-md-2 col-6 tech-logo">
-      <img src="../assets/images/client2.png" class="img-fluid set-img" alt="Client 2">
-    </div>
-    <div class="col-md-2 col-6 tech-logo">
-      <img src="../assets/images/Shigma Shine.png" class="img-fluid set-img" alt="Client 2">
-    </div>
-  </div>
-</div>
+</section>
 
-<div class="containerh">
-  <div class="clients-section">
-    <div class="d-flex align-items-center">
-      <div class="col-md-2 text-center clients-title">
-        <h2>OUR <br /> TECHNOLOGY </h2>
-      </div>
-      <div class="col-md-9 marquee-container">
-        <div class="clients-logos marquee d-flex justify-content-around">
-          <div class="client-logo">
-            <img src="../assets/images/Angular.png" alt="Client 1">
-          </div>
-          <div class="client-logo">
-            <img src="../assets/images/js.png" alt="Client 2">
-          </div>
-          <div class="client-logo">
-            <img src="../assets/images/html.png" alt="Client 3">
-          </div>
-          <div class="client-logo">
-            <img src="../assets/images/css.png" alt="Client 4">
-          </div>
-          <div class="client-logo">
-            <img src="../assets/images/js2.png" alt="Client 5">
-          </div>
-          <div class="client-logo">
-            <img src="../assets/images/php.png" alt="Client 6">
-          </div>
-          <div class="client-logo">
-            <img src="../assets/images/python.png" alt="Client 7">
-          </div>
-          <div class="client-logo">
-            <img src="../assets/images/swift.png" alt="Client 8">
-          </div>
-          <div class="client-logo">
-            <img src="../assets/images/flutter.png" alt="Client 9">
-          </div>
-          <div class="client-logo">
-            <img src="../assets/images/wordpress.png" alt="Client 10">
-          </div>
-          <div class="client-logo">
-            <img src="../assets/images/kotlin.png" alt="Client 11">
-          </div>
-          <div class="client-logo">
-            <img src="../assets/images/ahrefs.png" alt="Client 12">
-          </div>
-          <div class="client-logo">
-            <img src="../assets/images/semrush.png" alt="Client 13">
-          </div>
-          <div class="client-logo">
-            <img src="../assets/images/figma.png" alt="Client 14">
-          </div>
-          <div class="client-logo">
-            <img src="../assets/images/ps.png" alt="Client 15">
-          </div>
-          <div class="client-logo">
-            <img src="../assets/images/ai.png" alt="Client 16">
-          </div>
-          <div class="client-logo">
-            <img src="../assets/images/coreldraw.png" alt="Client 17">
-          </div>
-          <div class="client-logo">
-            <img src="../assets/images/react.png" alt="Client 18">
-          </div>
-          <div class="client-logo">
-            <img src="../assets/images/node.png" alt="Client 19">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<!-- ============ SECTION 7: CTA ============ -->
+<section class="cta-section">
+  <div class="shape shape-circle-outer float-3" style="top:15%;right:8%" data-speed="-0.15"></div>
+  <div class="shape shape-sq-inner float-1" style="top:65%;left:7%" data-speed="-0.1"></div>
+
+  <h2 class="cta-title">
+    Start your <strong>project.</strong><br>
+    <span class="thin">Let us build it right.</span>
+  </h2>
+
+  <p class="cta-sub">
+    From <strong>idea</strong> to <strong>launch</strong> — we handle the complexity
+    so you can focus on growth.
+  </p>
+
+  <a class="btn-dark" routerLink="/contacts">Get In Touch →</a>
+</section>
