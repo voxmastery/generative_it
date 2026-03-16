@@ -8,13 +8,13 @@
 .hero .btn-pill { margin-top: 40px; }
 
 /* CLIENTS */
-.clients { padding: 30px 40px; text-align: center; }
+.clients { padding: 20px 40px 10px; text-align: center; }
 .client-logos { display: flex; gap: 80px; justify-content: center; align-items: center; margin-top: 20px; }
-.client-logos img { height: 80px; width: auto; }
+.client-logos img { height: 120px; width: auto; }
 
 /* STATEMENT + GRID (shared by What We Do and How We Work) */
-.wwd-section, .hww-section { position: relative; padding: 60px 40px; }
-.statement-card { max-width: 900px; margin: 0 auto; padding: 8px; overflow: hidden; }
+.wwd-section, .hww-section { position: relative; padding: 40px 40px; }
+.statement-card { max-width: 1060px; margin: 0 auto; padding: 8px; overflow: hidden; }
 .stmt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
 .stmt-left { padding: 44px 36px; display: flex; flex-direction: column; justify-content: center; }
 .stmt-headline { font-size: 36px; font-weight: 900; color: var(--text-primary); line-height: 1.15; letter-spacing: -1.5px; margin-bottom: 14px; }
@@ -46,7 +46,7 @@
 
 /* TESTIMONIALS */
 .tst-section { position: relative; text-align: center; padding: 60px 40px; }
-.tst-grid { display: flex; gap: 20px; justify-content: center; max-width: 900px; margin: 0 auto; }
+.tst-grid { display: flex; gap: 20px; justify-content: center; max-width: 1060px; margin: 0 auto; }
 .tst-card { padding: 32px; flex: 1; text-align: left; }
 .tst-stars { color: var(--gold); font-size: 15px; letter-spacing: 2px; margin-bottom: 16px; }
 .tst-quote { font-size: 15px; color: var(--text-primary); line-height: 1.7; font-style: italic; }
