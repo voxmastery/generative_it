@@ -80,7 +80,17 @@
             }
           </div>
 
-          <button type="submit" class="btn-dark submit-btn" [disabled]="contactForm.invalid">Submit</button>
+          @if (error) {
+            <p class="error" style="margin-bottom:12px;">{{ error }}</p>
+          }
+
+          <button type="submit" class="btn-dark submit-btn" [disabled]="contactForm.invalid || submitting">
+            @if (submitting) {
+              Sending...
+            } @else {
+              Submit
+            }
+          </button>
         </form>
       }
     </div>
