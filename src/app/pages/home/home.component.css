@@ -1,87 +1,293 @@
-/* HERO */
-.hero { position: relative; text-align: center; padding: 160px 40px 20px; }
-.hero-badge { display: inline-flex; align-items: center; gap: 8px; background: white; padding: 7px 20px; border-radius: 50px; font-size: 13px; color: var(--text-secondary); box-shadow: 0 1px 8px rgba(0,0,0,0.04); margin-bottom: 48px; font-weight: 500; }
-.green-dot { width: 8px; height: 8px; background: var(--green); border-radius: 50%; flex-shrink: 0; }
-.hero-title { font-size: 72px; font-weight: 800; line-height: 1.06; letter-spacing: -3px; max-width: 750px; margin: 0 auto; }
-.hero-sub { color: var(--text-secondary); font-size: 19px; margin-top: 28px; max-width: 540px; margin-left: auto; margin-right: auto; line-height: 1.65; }
-.hero-sub strong { color: var(--text-primary); font-weight: 600; }
-.hero .btn-pill { margin-top: 40px; }
+/*
+  SPACING SYSTEM (8px grid)
+  -------------------------
+  8   - tight (icon gaps)
+  16  - element spacing (label to content, icon to text)
+  24  - related group spacing (heading to body, card internal)
+  32  - card padding
+  40  - between related sections
+  48  - medium section gap
+  64  - between major sections
+  80  - major section padding top
+  96  - hero area
+  128 - hero top (accounts for fixed nav)
 
-/* CLIENTS */
-.clients { padding: 60px 40px 10px; text-align: center; }
-.clients .section-label { font-size: 14px; letter-spacing: 4px; }
-.client-logos { display: flex; gap: 80px; justify-content: center; align-items: center; margin-top: 24px; }
+  Rule: internal padding ≤ external margin (Law of Proximity)
+*/
+
+/* ====== HERO ====== */
+.hero {
+  position: relative;
+  text-align: center;
+  padding: 128px 40px 48px; /* 128 top for nav clearance, 48 bottom to clients */
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+  margin-bottom: 32px; /* 32 badge to headline */
+  font-weight: 500;
+}
+.green-dot { width: 8px; height: 8px; background: var(--green); border-radius: 50%; flex-shrink: 0; }
+.hero-title {
+  font-size: 72px;
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -3px;
+  max-width: 750px;
+  margin: 0 auto;
+}
+.hero-sub {
+  color: var(--text-secondary);
+  font-size: 18px;
+  margin-top: 24px; /* 24 headline to subtitle */
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.65;
+}
+.hero-sub strong { color: var(--text-primary); font-weight: 600; }
+.hero .btn-pill { margin-top: 32px; /* 32 subtitle to button */ }
+
+/* ====== CLIENTS ====== */
+.clients {
+  padding: 48px 40px 40px; /* 48 top (related to hero), 40 bottom (transition to next section) */
+  text-align: center;
+}
+.clients .section-label {
+  font-size: 13px;
+  letter-spacing: 4px;
+}
+.client-logos {
+  display: flex;
+  gap: 64px; /* 64 between logos — generous, gives each logo breathing room */
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px; /* 24 label to logos */
+}
 .client-logos img { height: 120px; width: auto; }
 
-/* STATEMENT + GRID (shared by What We Do and How We Work) */
-.wwd-section, .hww-section { position: relative; padding: 40px 40px; }
-.statement-card { max-width: 1060px; margin: 0 auto; padding: 8px; overflow: hidden; }
-.stmt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
-.stmt-left { padding: 44px 36px; display: flex; flex-direction: column; justify-content: center; }
-.stmt-headline { font-size: 36px; font-weight: 900; color: var(--text-primary); line-height: 1.15; letter-spacing: -1.5px; margin-bottom: 14px; }
-.stmt-sub { font-size: 14px; color: #64748b; line-height: 1.7; }
-.stmt-cta { display: inline-flex; align-items: center; gap: 8px; margin-top: 24px; font-size: 14px; font-weight: 600; color: var(--text-primary); transition: gap 0.3s; }
-.stmt-cta:hover { gap: 14px; }
+/* ====== STATEMENT + GRID (What We Do & How We Work) ====== */
+.wwd-section, .hww-section {
+  position: relative;
+  padding: 48px 40px; /* 48 between major sections */
+}
+.statement-card {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 0; /* no extra padding — the frost class handles border/radius */
+  overflow: hidden;
+}
+.stmt-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+.stmt-left {
+  padding: 40px 40px; /* 40 internal padding — consistent */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.stmt-headline {
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--text-primary);
+  line-height: 1.15;
+  letter-spacing: -1.5px;
+  margin-bottom: 16px; /* 16 headline to subtitle */
+}
+.stmt-sub {
+  font-size: 15px;
+  color: #64748b;
+  line-height: 1.7;
+}
+.stmt-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px; /* 24 subtitle to CTA */
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: gap 0.3s;
+}
+.stmt-cta:hover { gap: 16px; }
 .stmt-cta i { font-size: 12px; }
 
-.stmt-right { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(195,210,230,0.12); border-radius: 18px; overflow: hidden; }
-.stmt-cell { background: rgba(255,255,255,0.6); backdrop-filter: blur(10px); padding: 28px 22px; transition: background 0.3s; }
+.stmt-right {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: rgba(195,210,230,0.12);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.stmt-cell {
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(10px);
+  padding: 32px 24px; /* 32 top/bottom, 24 left/right — internal card padding */
+  transition: background 0.3s;
+}
 .stmt-cell:hover { background: #eef0f4; }
-.stmt-cell h4 { font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
-.stmt-cell p { font-size: 12.5px; color: #94a3b8; line-height: 1.55; }
+.stmt-cell h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px; /* 4 title to description — very tight, they're related */
+}
+.stmt-cell p {
+  font-size: 13px;
+  color: #94a3b8;
+  line-height: 1.55;
+}
 
-/* FA icon containers */
-.svc-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 14px; }
+/* ====== FA ICON CONTAINERS ====== */
+.svc-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin-bottom: 16px; /* 16 icon to title */
+}
 .ic-app { background: rgba(99,102,241,0.07); color: #6366f1; }
 .ic-web { background: rgba(6,182,212,0.07); color: #06b6d4; }
 .ic-mkt { background: rgba(34,197,94,0.07); color: #22c55e; }
 .ic-dsg { background: rgba(244,114,182,0.07); color: #f472b6; }
 
-/* HOW WE WORK steps */
-.step-cell { background: rgba(255,255,255,0.6); backdrop-filter: blur(10px); padding: 24px 22px; transition: background 0.3s; }
+/* ====== HOW WE WORK STEPS ====== */
+.step-cell {
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(10px);
+  padding: 28px 24px; /* slightly less than stmt-cell since no icon */
+  transition: background 0.3s;
+}
 .step-cell:hover { background: #eef0f4; }
-.step-num { font-size: 24px; font-weight: 900; color: var(--text-primary); margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+.step-num {
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--text-primary);
+  margin-bottom: 8px; /* 8 number to title — tight, they're the same element */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 .step-line { flex: 1; height: 1px; background: rgba(195,210,230,0.3); }
-.step-cell h4 { font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
-.step-cell p { font-size: 12px; color: #86868b; line-height: 1.55; }
+.step-cell h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+.step-cell p { font-size: 13px; color: #86868b; line-height: 1.55; }
 
-/* TESTIMONIALS */
-.tst-section { position: relative; text-align: center; padding: 60px 40px; }
-.tst-grid { display: flex; gap: 20px; justify-content: center; max-width: 1060px; margin: 0 auto; }
-.tst-card { padding: 32px; flex: 1; text-align: left; }
-.tst-stars { color: var(--gold); font-size: 15px; letter-spacing: 2px; margin-bottom: 16px; }
+/* ====== TESTIMONIALS ====== */
+.tst-section {
+  position: relative;
+  text-align: center;
+  padding: 48px 40px; /* 48 — same rhythm as other major sections */
+}
+.tst-grid {
+  display: flex;
+  gap: 16px; /* 16 between cards — tighter than before, cards are related */
+  justify-content: center;
+  max-width: 1060px;
+  margin: 24px auto 0; /* 24 title to cards */
+}
+.tst-card {
+  padding: 32px; /* 32 internal — consistent with stmt-cell */
+  flex: 1;
+  text-align: left;
+}
+.tst-stars { color: var(--gold); font-size: 15px; letter-spacing: 2px; margin-bottom: 16px; /* 16 stars to quote */ }
 .tst-quote { font-size: 15px; color: var(--text-primary); line-height: 1.7; font-style: italic; }
-.tst-author { margin-top: 22px; display: flex; align-items: center; gap: 12px; }
+.tst-author {
+  margin-top: 24px; /* 24 quote to author — related but separate */
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 .tst-avatar { width: 40px; height: 40px; background: var(--dark); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 14px; flex-shrink: 0; }
 .tst-name { font-weight: 700; font-size: 14px; }
 .tst-role { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
 
-/* TECH */
-.tech-section { padding: 50px 40px; text-align: center; }
-.tech-pills { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 30px; max-width: 650px; margin-left: auto; margin-right: auto; }
-.tech-pill { background: white; border: 1px solid #e5e5ea; border-radius: 50px; padding: 8px 20px; font-size: 14px; color: var(--text-secondary); font-weight: 500; transition: all 0.2s; }
+/* ====== TECH STACK ====== */
+.tech-section {
+  padding: 40px 40px; /* 40 — slightly less than major sections, it's a lighter section */
+  text-align: center;
+}
+.tech-pills {
+  display: flex;
+  gap: 8px; /* 8 between pills — tight, they're all the same type */
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 24px; /* 24 label to pills */
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.tech-pill {
+  background: white;
+  border: 1px solid #e5e5ea;
+  border-radius: 50px;
+  padding: 8px 20px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  transition: all 0.2s;
+}
 .tech-pill:hover { color: var(--text-primary); border-color: var(--text-muted); }
 
-/* CTA */
-.cta-section { position: relative; text-align: center; padding: 80px 40px; }
-.cta-title { font-size: 60px; font-weight: 800; letter-spacing: -2.5px; line-height: 1.08; }
-.cta-sub { color: var(--text-secondary); font-size: 18px; margin-top: 20px; font-style: italic; }
+/* ====== CTA ====== */
+.cta-section {
+  position: relative;
+  text-align: center;
+  padding: 64px 40px 80px; /* 64 top, 80 bottom (before footer, needs breathing room) */
+}
+.cta-title {
+  font-size: 56px;
+  font-weight: 800;
+  letter-spacing: -2.5px;
+  line-height: 1.08;
+}
+.cta-sub {
+  color: var(--text-secondary);
+  font-size: 18px;
+  margin-top: 16px; /* 16 title to subtitle */
+  font-style: italic;
+}
 .cta-sub strong { color: var(--text-primary); }
-.cta-section .btn-dark { margin-top: 36px; }
+.cta-section .btn-dark { margin-top: 32px; /* 32 subtitle to button */ }
 
-/* MOBILE */
+/* ====== MOBILE ====== */
 @media (max-width: 768px) {
-  .hero { padding: 140px 24px 60px; }
+  .hero { padding: 112px 24px 40px; }
   .hero-title { font-size: 42px; letter-spacing: -1.5px; }
   .hero-sub { font-size: 16px; }
+
+  .clients { padding: 32px 24px; }
   .client-logos { flex-direction: column; gap: 24px; }
-  .client-logos img { height: 32px; }
-  .tst-section { padding: 80px 24px; }
+  .client-logos img { height: 56px; }
+
+  .wwd-section, .hww-section { padding: 32px 24px; }
   .stmt-grid { grid-template-columns: 1fr; }
   .stmt-left { padding: 32px 24px; }
   .stmt-headline { font-size: 28px; }
-  .wwd-section, .hww-section { padding: 80px 24px; }
-  .tst-grid { flex-direction: column; }
-  .cta-title { font-size: 38px; letter-spacing: -1px; }
-  .cta-section { padding: 80px 24px; }
+
+  .tst-section { padding: 40px 24px; }
+  .tst-grid { flex-direction: column; margin-top: 16px; }
+
+  .tech-section { padding: 32px 24px; }
+
+  .cta-section { padding: 48px 24px 64px; }
+  .cta-title { font-size: 36px; letter-spacing: -1px; }
 }
