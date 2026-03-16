@@ -8,8 +8,9 @@
 .hero .btn-pill { margin-top: 40px; }
 
 /* CLIENTS */
-.clients { padding: 20px 40px 10px; text-align: center; }
-.client-logos { display: flex; gap: 80px; justify-content: center; align-items: center; margin-top: 20px; }
+.clients { padding: 60px 40px 10px; text-align: center; }
+.clients .section-label { font-size: 14px; letter-spacing: 4px; }
+.client-logos { display: flex; gap: 80px; justify-content: center; align-items: center; margin-top: 24px; }
 .client-logos img { height: 120px; width: auto; }
 
 /* STATEMENT + GRID (shared by What We Do and How We Work) */
