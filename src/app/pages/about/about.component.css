@@ -31,4 +31,8 @@
   .values-grid { grid-template-columns: 1fr; }
   .stats-section { flex-direction: column; gap: 24px; }
   .team-grid { flex-direction: column; align-items: center; }
+  .story-section { padding: 24px 24px 48px; }
+  .story-points li { font-size: 15px; }
+  .team-photo { width: 160px; height: 200px; }
+  .value-card { padding: 24px; }
 }

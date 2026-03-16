@@ -340,6 +340,15 @@
 .cta-sub strong { color: var(--text-primary); }
 .cta-section .btn-dark { margin-top: 32px; /* 32 subtitle to button */ }
 
+/* ====== TABLET ====== */
+@media (max-width: 1024px) {
+  .hero-title { font-size: 56px; }
+  .client-logos { gap: 40px; }
+  .client-logos img { height: 80px; }
+  .statement-card { max-width: 100%; }
+  .cta-title { font-size: 48px; }
+}
+
 /* ====== MOBILE ====== */
 @media (max-width: 768px) {
   .hero { padding: 112px 24px 40px; }

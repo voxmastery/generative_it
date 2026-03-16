@@ -262,4 +262,7 @@ button {
   .section-sub {
     font-size: 16px;
   }
+
+  .btn-pill, .btn-dark { padding: 12px 28px; font-size: 14px; }
+  .shape { display: none; }
 }
