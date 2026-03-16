@@ -54,7 +54,11 @@
   100% { transform: translate(0, 0) scale(0.9); opacity: 0.35; }
 }
 
-app-header, main, app-footer {
+app-header {
+  position: relative;
+  z-index: 200;
+}
+main, app-footer {
   position: relative;
   z-index: 2;
 }
