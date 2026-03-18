@@ -25,16 +25,17 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: white;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 8px 20px;
   border-radius: 50px;
   font-size: 13px;
-  color: var(--text-secondary);
-  box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+  color: var(--accent-cyan);
+  box-shadow: none;
   margin-bottom: 32px; /* 32 badge to headline */
   font-weight: 500;
 }
-.green-dot { width: 8px; height: 8px; background: var(--green); border-radius: 50%; flex-shrink: 0; }
+.green-dot { width: 8px; height: 8px; background: var(--accent-cyan); border-radius: 50%; flex-shrink: 0; }
 .hero-title {
   font-size: 72px;
   font-weight: 800;
@@ -105,7 +106,7 @@
 }
 .stmt-sub {
   font-size: 15px;
-  color: #64748b;
+  color: var(--text-secondary);
   line-height: 1.7;
 }
 .stmt-cta {
@@ -125,17 +126,17 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1px;
-  background: rgba(195,210,230,0.12);
+  background: rgba(255, 255, 255, 0.04);
   border-radius: 16px;
   overflow: hidden;
 }
 .stmt-cell {
-  background: rgba(255,255,255,0.6);
+  background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(10px);
   padding: 32px 24px; /* 32 top/bottom, 24 left/right — internal card padding */
   transition: background 0.3s;
 }
-.stmt-cell:hover { background: #eef0f4; }
+.stmt-cell:hover { background: rgba(255, 255, 255, 0.06); }
 .stmt-cell h4 {
   font-size: 16px;
   font-weight: 700;
@@ -144,7 +145,7 @@
 }
 .stmt-cell p {
   font-size: 13px;
-  color: #94a3b8;
+  color: var(--text-secondary);
   line-height: 1.55;
 }
 
@@ -159,19 +160,19 @@
   font-size: 20px;
   margin-bottom: 16px; /* 16 icon to title */
 }
-.ic-app { background: rgba(99,102,241,0.07); color: #6366f1; }
-.ic-web { background: rgba(6,182,212,0.07); color: #06b6d4; }
-.ic-mkt { background: rgba(34,197,94,0.07); color: #22c55e; }
-.ic-dsg { background: rgba(244,114,182,0.07); color: #f472b6; }
+.ic-app { background: rgba(99,102,241,0.12); color: #6366f1; }
+.ic-web { background: rgba(6,182,212,0.12); color: #06b6d4; }
+.ic-mkt { background: rgba(34,197,94,0.12); color: #22c55e; }
+.ic-dsg { background: rgba(244,114,182,0.12); color: #f472b6; }
 
 /* ====== HOW WE WORK STEPS ====== */
 .step-cell {
-  background: rgba(255,255,255,0.6);
+  background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(10px);
   padding: 28px 24px; /* slightly less than stmt-cell since no icon */
   transition: background 0.3s;
 }
-.step-cell:hover { background: #eef0f4; }
+.step-cell:hover { background: rgba(255, 255, 255, 0.06); }
 .step-num {
   font-size: 24px;
   font-weight: 900;
@@ -181,14 +182,14 @@
   align-items: center;
   gap: 8px;
 }
-.step-line { flex: 1; height: 1px; background: rgba(195,210,230,0.3); }
+.step-line { flex: 1; height: 1px; background: rgba(255,255,255,0.08); }
 .step-cell h4 {
   font-size: 16px;
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 4px;
 }
-.step-cell p { font-size: 13px; color: #86868b; line-height: 1.55; }
+.step-cell p { font-size: 13px; color: var(--text-secondary); line-height: 1.55; }
 
 /* ====== TESTIMONIALS — Idle Float + Hover Lift & Glow ====== */
 .tst-section {
@@ -227,15 +228,15 @@
   position: absolute;
   top: -50%; left: -50%;
   width: 200%; height: 200%;
-  background: radial-gradient(circle at center, rgba(99,102,241,0.05) 0%, transparent 60%);
+  background: radial-gradient(circle at center, rgba(0, 102, 255, 0.06) 0%, transparent 60%);
   opacity: 0;
   transition: opacity 0.4s;
   pointer-events: none;
 }
 .tst-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.08);
-  border-color: rgba(99,102,241,0.15);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+  border-color: rgba(0, 102, 255, 0.2);
   animation-play-state: paused;
 }
 .tst-card:hover::after { opacity: 1; }
@@ -260,7 +261,7 @@
   align-items: center;
   gap: 12px;
 }
-.tst-avatar { width: 40px; height: 40px; background: var(--dark); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 14px; flex-shrink: 0; }
+.tst-avatar { width: 40px; height: 40px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 14px; flex-shrink: 0; }
 .tst-name { font-weight: 700; font-size: 14px; }
 
 /* ====== TECH STACK — Infinite Marquee ====== */
@@ -286,8 +287,8 @@
   z-index: 2;
   pointer-events: none;
 }
-.tech-marquee-wrap::before { left: 0; background: linear-gradient(90deg, #f3f3f5, transparent); }
-.tech-marquee-wrap::after { right: 0; background: linear-gradient(-90deg, #f3f3f5, transparent); }
+.tech-marquee-wrap::before { left: 0; background: linear-gradient(90deg, #0f0f13, transparent); }
+.tech-marquee-wrap::after { right: 0; background: linear-gradient(-90deg, #0f0f13, transparent); }
 
 .tech-marquee {
   display: flex;
@@ -297,8 +298,8 @@
 }
 .tech-marquee:hover { animation-play-state: paused; }
 .tech-pill {
-  background: white;
-  border: 1px solid #e5e5ea;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 50px;
   padding: 14px 28px;
   font-size: 16px;
@@ -309,9 +310,9 @@
   transition: all 0.3s;
 }
 .tech-pill:hover {
-  background: var(--dark);
+  background: var(--accent-gradient);
   color: white;
-  border-color: var(--dark);
+  border-color: transparent;
   transform: scale(1.05);
 }
 @keyframes techScroll {

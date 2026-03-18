@@ -4,7 +4,7 @@
 .story-section h2 { font-size: 28px; font-weight: 800; margin-bottom: 20px; }
 .story-points { list-style: none; padding: 0; }
 .story-points li { font-size: 16px; color: var(--text-secondary); line-height: 1.7; padding: 8px 0 8px 20px; position: relative; }
-.story-points li::before { content: ''; position: absolute; left: 0; top: 16px; width: 6px; height: 6px; background: var(--text-muted); border-radius: 50%; }
+.story-points li::before { content: ''; position: absolute; left: 0; top: 16px; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
 
 .values-section { padding: 0 40px 80px; max-width: 900px; margin: 0 auto; }
 .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
@@ -24,7 +24,7 @@
 .team-role { font-size: 13px; color: var(--text-secondary); display: block; margin: 4px 0 12px; }
 .team-bio { list-style: none; padding: 0; text-align: left; }
 .team-bio li { font-size: 13px; color: var(--text-secondary); line-height: 1.6; padding: 3px 0 3px 14px; position: relative; }
-.team-bio li::before { content: ''; position: absolute; left: 0; top: 10px; width: 4px; height: 4px; background: var(--text-muted); border-radius: 50%; }
+.team-bio li::before { content: ''; position: absolute; left: 0; top: 10px; width: 4px; height: 4px; background: var(--accent); border-radius: 50%; }
 
 @media (max-width: 768px) {
   .page-hero { padding: 140px 24px 40px; }
