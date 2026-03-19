@@ -36,13 +36,9 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
           const progress = Math.min(scrollY / (heroHeight * 0.7), 1);
 
           if (heroTitle) {
-            const scale = 1 + progress * 0.15;
-            const blur = progress * 12;
-            const opacity = 1 - progress;
-            const translateY = progress * 80;
-            heroTitle.style.transform = `translateY(${translateY}px) scale(${scale})`;
-            heroTitle.style.filter = `blur(${blur}px)`;
-            heroTitle.style.opacity = `${opacity}`;
+            heroTitle.style.transform = `translateY(${progress * 80}px) scale(${1 + progress * 0.15})`;
+            heroTitle.style.filter = `blur(${progress * 12}px)`;
+            heroTitle.style.opacity = `${1 - progress}`;
           }
           if (heroSub) {
             heroSub.style.transform = `translateY(${progress * 40}px)`;
@@ -62,12 +58,10 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     };
     window.addEventListener('scroll', this.scrollHandler, { passive: true });
 
-    // Services horizontal scroll
     this.initServicesScroll();
   }
 
   private async initServicesScroll() {
-    // Skip on mobile — CSS handles vertical layout
     if (window.innerWidth <= 768) return;
 
     const gsapModule = await import('gsap');
@@ -78,69 +72,75 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
 
     const section = document.querySelector('.wwd-scroll-section');
     const track = document.querySelector<HTMLElement>('.wwd-track');
-    const monoliths = document.querySelectorAll('.service-monolith');
+    const monoliths = document.querySelectorAll<HTMLElement>('.service-monolith');
 
     if (!section || !track || monoliths.length === 0) return;
 
-    // Total scroll distance: enough for morph phase + slide phase
-    const totalScroll = 3000;
-
+    // Three-phase animation over 4000px of scroll
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
         start: 'top top',
-        end: `+=${totalScroll}`,
+        end: '+=4000',
         pin: true,
-        scrub: 0.8,
+        scrub: 0.6,
         anticipatePin: 1,
         invalidateOnRefresh: true,
       }
     });
 
-    // === PHASE 1 (0% - 35%): Dots morph into cards ===
+    // === PHASE 1 (0% - 20%): Dots spread apart to the right ===
     monoliths.forEach((monolith, i) => {
-      const startAt = i * 0.06; // stagger: 0, 0.06, 0.12, 0.18
-
-      // Morph dot → card
       tl.to(monolith, {
-        width: '360px',
-        height: '460px',
-        borderRadius: '24px',
-        background: 'rgba(255,255,255,0)',
-        boxShadow: '0 8px 40px rgba(0,0,0,0.06), 0 0 0 1px rgba(229,229,234,1)',
-        duration: 0.15,
+        x: (i + 1) * 120,
+        duration: 0.2,
         ease: 'power2.out'
-      }, startAt);
+      }, 0);
+    });
 
-      // Fade in content
+    // === PHASE 2 (20% - 50%): Dots morph into cards (staggered) ===
+    monoliths.forEach((monolith, i) => {
+      const offset = 0.2 + (i * 0.05);
+
+      tl.to(monolith, {
+        width: '340px',
+        height: '440px',
+        borderRadius: '24px',
+        background: 'transparent',
+        x: 0, // reset spread — cards take natural flow position
+        boxShadow: '0 4px 32px rgba(0,0,0,0.06), 0 0 0 1px rgba(229,229,234,1)',
+        duration: 0.12,
+        ease: 'power2.inOut'
+      }, offset);
+
       const content = monolith.querySelector('.monolith-content');
       if (content) {
         tl.to(content, {
           opacity: 1,
-          duration: 0.08,
+          duration: 0.06,
           ease: 'power1.in'
-        }, startAt + 0.12);
+        }, offset + 0.1);
       }
     });
 
-    // === PHASE 2 (35% - 95%): Slide track horizontally ===
+    // === PHASE 3 (50% - 90%): Slide track left so all cards visible ===
     tl.to(track, {
       x: () => {
-        const trackWidth = track.scrollWidth;
-        const viewportWidth = window.innerWidth;
-        return -(trackWidth - viewportWidth + 100);
+        // Calculate exact distance to bring last card into view
+        const trackRight = track.scrollWidth;
+        const available = window.innerWidth - 420; // 420 = intro width
+        const overflow = trackRight - available;
+        return overflow > 0 ? -overflow - 40 : 0;
       },
-      duration: 0.6,
-      ease: 'none',
-    }, 0.35);
+      duration: 0.4,
+      ease: 'power1.inOut',
+    }, 0.52);
 
-    // === PHASE 3 (95% - 100%): Brief pause before unpin ===
-    tl.to({}, { duration: 0.05 });
+    // === PHASE 4 (90% - 100%): Hold before unpin ===
+    tl.to({}, { duration: 0.08 });
 
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 768) {
-        ScrollTrigger.refresh();
-      }
+      if (window.innerWidth > 768) ScrollTrigger.refresh();
     });
   }
 
