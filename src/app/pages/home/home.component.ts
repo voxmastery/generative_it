@@ -135,7 +135,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
         const available = window.innerWidth - introWidth;
         const cardsTotal = (340 * 4) + (32 * 3);
         const overflow = cardsTotal - available;
-        return overflow > 0 ? -(overflow + 60) : 0;
+        return overflow > 0 ? -(overflow + 120) : 0;
       },
       duration: 0.20,
       ease: 'power1.inOut',
