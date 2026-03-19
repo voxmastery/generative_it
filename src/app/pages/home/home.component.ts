@@ -77,7 +77,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     if (!section || !track || monoliths.length === 0) return;
 
     // How far right the dots need to travel
-    const travelDistance = window.innerWidth - 420; // from intro edge to right edge
+    const travelDistance = window.innerWidth - 400;
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -108,8 +108,8 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       // Morph dot → card while returning to natural position
       tl.to(monolith, {
         x: 0,
-        width: '340px',
-        height: '440px',
+        width: '300px',
+        height: '400px',
         borderRadius: '24px',
         background: 'transparent',
         boxShadow: '0 4px 32px rgba(0,0,0,0.06), 0 0 0 1px rgba(229,229,234,1)',
@@ -131,11 +131,11 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     // === PHASE 3 (75% - 95%): Slide track left so all 4 cards are visible ===
     tl.to(track, {
       x: () => {
-        const introWidth = 360;
+        const introWidth = 390;
         const available = window.innerWidth - introWidth;
-        const cardsTotal = (340 * 4) + (32 * 3);
+        const cardsTotal = (300 * 4) + (24 * 3);
         const overflow = cardsTotal - available;
-        return overflow > 0 ? -(overflow + 120) : 0;
+        return overflow > 0 ? -(overflow + 80) : 0;
       },
       duration: 0.20,
       ease: 'power1.inOut',
