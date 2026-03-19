@@ -59,7 +59,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     window.addEventListener('scroll', this.scrollHandler, { passive: true });
 
     this.initServicesScroll();
-    this.initDropCards();
+    this.initTetrisDrop();
   }
 
   private async initServicesScroll() {
@@ -150,44 +150,62 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     });
   }
 
-  private async initDropCards() {
+  private async initTetrisDrop() {
+    if (window.innerWidth <= 768) return;
+
     const gsapModule = await import('gsap');
     const scrollTriggerModule = await import('gsap/ScrollTrigger');
     const gsap = gsapModule.default || gsapModule.gsap;
     const ScrollTrigger = scrollTriggerModule.default || scrollTriggerModule.ScrollTrigger;
     gsap.registerPlugin(ScrollTrigger);
 
-    const cards = document.querySelectorAll<HTMLElement>('.drop-card');
-    if (cards.length === 0) return;
+    const section = document.querySelector('.hww-drop-section');
+    const cells = document.querySelectorAll<HTMLElement>('.drop-cell');
 
-    // Set initial state — each card starts higher, with different rotation
-    cards.forEach((card, i) => {
-      gsap.set(card, {
-        y: -(180 + i * 40),       // higher for later cards
-        rotation: -5 + (i * 3),    // varied tilt: -5, -2, 1, 4
-        scale: 0.75,
+    if (!section || cells.length === 0) return;
+
+    // Drop order: top-left(0), top-right(1), bottom-left(2), bottom-right(3)
+    // Each starts high above with slight rotation, drops and bounces into place
+    const startRotations = [-4, 3, -2, 5]; // slight random rotations while falling
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: 'top top',
+        end: '+=2500',
+        pin: true,
+        scrub: 0.5,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+      }
+    });
+
+    cells.forEach((cell, i) => {
+      const stagger = i * 0.18;
+
+      // Drop from above — fall with rotation
+      tl.to(cell, {
+        y: 0,
+        rotation: 0,
+        opacity: 1,
+        duration: 0.22,
+        ease: 'bounce.out',
+      }, stagger);
+
+      // Set initial state (off-screen above with rotation)
+      gsap.set(cell, {
+        y: -800,
+        rotation: startRotations[i],
         opacity: 0,
+        transformOrigin: 'center center',
       });
     });
 
-    // Each card drops independently, triggered by scroll
-    cards.forEach((card, i) => {
-      gsap.to(card, {
-        scrollTrigger: {
-          trigger: '.hww-drop-zone',
-          start: 'top 75%',
-          toggleActions: 'play none none reverse',
-        },
-        y: 0,
-        rotation: 0,
-        scale: 1,
-        opacity: 1,
-        duration: 0.7,
-        delay: i * 0.18,  // stagger: 0s, 0.18s, 0.36s, 0.54s
-        ease: 'bounce.out',
-        onComplete: () => card.classList.add('landed'),
-        onReverseComplete: () => card.classList.remove('landed'),
-      });
+    // Hold all cards visible before unpin
+    tl.to({}, { duration: 0.15 });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) ScrollTrigger.refresh();
     });
   }
 
