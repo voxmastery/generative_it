@@ -303,51 +303,48 @@
 .hww-drop-inner {
   display: flex;
   align-items: center;
+  justify-content: center;
   height: 100vh;
-  padding: 0 6vw;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 0 40px;
+}
+.hww-card {
+  max-width: 1060px;
+  width: 100%;
+  overflow: hidden;
+}
+.hww-card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
 }
 .hww-intro {
-  flex-shrink: 0;
-  width: 340px;
-  padding-right: 48px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .hww-drop-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  flex: 1;
+  gap: 1px;
+  background: var(--bg-border);
+  overflow: hidden;
+  border-radius: 0 0 28px 0;
 }
 .drop-cell {
-  background: var(--bg-surface);
-  border: 1px solid var(--bg-border);
-  border-radius: 20px;
+  background: var(--bg);
   padding: 28px 24px;
   position: relative;
   overflow: hidden;
-  will-change: transform, opacity, box-shadow;
-  /* Start off-screen above — GSAP will animate these */
-  transform: translateY(-120vh) rotate(-3deg);
+  will-change: transform, opacity;
+  /* Start off-screen above — GSAP will set initial state */
+  transform: translateY(-800px) rotate(-3deg);
   opacity: 0;
-  transition: box-shadow 0.3s, border-color 0.3s;
+  transition: background 0.3s;
 }
 .drop-cell:hover {
-  box-shadow: 0 12px 40px rgba(0, 84, 250, 0.1);
-  border-color: rgba(0, 84, 250, 0.2);
+  background: var(--bg-elevated);
 }
-/* Top accent line on hover */
-.drop-cell::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 20px; right: 20px;
-  height: 3px;
-  background: var(--accent-gradient);
-  border-radius: 3px;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.drop-cell:hover::before { opacity: 1; }
 
 .drop-num {
   font-family: var(--font-mono);
@@ -673,13 +670,9 @@
     padding: 20px;
   }
   .hww-drop-section { overflow: visible; }
-  .hww-drop-inner {
-    flex-direction: column;
-    height: auto;
-    padding: 40px 24px;
-  }
-  .hww-intro { width: 100%; padding-right: 0; margin-bottom: 32px; }
-  .hww-drop-grid { gap: 12px; }
+  .hww-drop-inner { height: auto; padding: 32px 24px; }
+  .hww-card-grid { grid-template-columns: 1fr; }
+  .hww-intro { padding: 32px 24px; }
   .drop-cell {
     transform: none !important;
     opacity: 1 !important;

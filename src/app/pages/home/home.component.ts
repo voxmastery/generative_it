@@ -168,41 +168,43 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     // Each starts high above with slight rotation, drops and bounces into place
     const startRotations = [-4, 3, -2, 5]; // slight random rotations while falling
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: 'top top',
-        end: '+=2500',
-        pin: true,
-        scrub: 0.5,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-      }
-    });
-
+    // Set initial state — cards above with rotation
     cells.forEach((cell, i) => {
-      const stagger = i * 0.18;
-
-      // Drop from above — fall with rotation
-      tl.to(cell, {
-        y: 0,
-        rotation: 0,
-        opacity: 1,
-        duration: 0.22,
-        ease: 'bounce.out',
-      }, stagger);
-
-      // Set initial state (off-screen above with rotation)
       gsap.set(cell, {
-        y: -800,
+        y: -600,
         rotation: startRotations[i],
         opacity: 0,
         transformOrigin: 'center center',
       });
     });
 
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: 'top top',
+        end: '+=2000',
+        pin: true,
+        scrub: 0.6,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+      }
+    });
+
+    // Drop each cell one by one with bounce
+    cells.forEach((cell, i) => {
+      const stagger = i * 0.20;
+
+      tl.to(cell, {
+        y: 0,
+        rotation: 0,
+        opacity: 1,
+        duration: 0.20,
+        ease: 'bounce.out',
+      }, stagger);
+    });
+
     // Hold all cards visible before unpin
-    tl.to({}, { duration: 0.15 });
+    tl.to({}, { duration: 0.18 });
 
     window.addEventListener('resize', () => {
       if (window.innerWidth > 768) ScrollTrigger.refresh();
