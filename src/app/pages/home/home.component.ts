@@ -20,7 +20,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     if (!this.isBrowser) return;
 
-    // Hero parallax (scroll-driven, no GSAP needed)
+    // Hero parallax
     const heroTitle = document.querySelector<HTMLElement>('.hero-title');
     const heroSub = document.querySelector<HTMLElement>('.hero-sub');
     const heroBadge = document.querySelector<HTMLElement>('.hero-badge');
@@ -44,99 +44,104 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
             heroTitle.style.filter = `blur(${blur}px)`;
             heroTitle.style.opacity = `${opacity}`;
           }
-
           if (heroSub) {
-            const opacity = 1 - progress * 1.5;
-            const translateY = progress * 40;
-            heroSub.style.transform = `translateY(${translateY}px)`;
-            heroSub.style.opacity = `${Math.max(0, opacity)}`;
+            heroSub.style.transform = `translateY(${progress * 40}px)`;
+            heroSub.style.opacity = `${Math.max(0, 1 - progress * 1.5)}`;
           }
-
           if (heroBadge) {
-            const opacity = 1 - progress * 2;
-            heroBadge.style.opacity = `${Math.max(0, opacity)}`;
+            heroBadge.style.opacity = `${Math.max(0, 1 - progress * 2)}`;
           }
-
           if (heroCta) {
-            const opacity = 1 - progress * 1.8;
-            const translateY = progress * 30;
-            heroCta.style.transform = `translateY(${translateY}px)`;
-            heroCta.style.opacity = `${Math.max(0, opacity)}`;
+            heroCta.style.transform = `translateY(${progress * 30}px)`;
+            heroCta.style.opacity = `${Math.max(0, 1 - progress * 1.8)}`;
           }
-
           ticking = false;
         });
         ticking = true;
       }
     };
-
     window.addEventListener('scroll', this.scrollHandler, { passive: true });
 
-    // GSAP horizontal scroll for What We Do monoliths
+    // Services horizontal scroll
     this.initServicesScroll();
   }
 
   private async initServicesScroll() {
+    // Skip on mobile — CSS handles vertical layout
+    if (window.innerWidth <= 768) return;
+
     const gsapModule = await import('gsap');
     const scrollTriggerModule = await import('gsap/ScrollTrigger');
-
     const gsap = gsapModule.default || gsapModule.gsap;
     const ScrollTrigger = scrollTriggerModule.default || scrollTriggerModule.ScrollTrigger;
     gsap.registerPlugin(ScrollTrigger);
 
     const section = document.querySelector('.wwd-scroll-section');
-    const track = document.querySelector('.wwd-track');
+    const track = document.querySelector<HTMLElement>('.wwd-track');
     const monoliths = document.querySelectorAll('.service-monolith');
 
     if (!section || !track || monoliths.length === 0) return;
 
-    const getScrollDistance = () => {
-      return track.scrollWidth - window.innerWidth + 400;
-    };
+    // Total scroll distance: enough for morph phase + slide phase
+    const totalScroll = 3000;
 
-    // Pin the section and create the horizontal scroll timeline
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
         start: 'top top',
-        end: () => `+=${getScrollDistance()}`,
+        end: `+=${totalScroll}`,
         pin: true,
-        scrub: 1,
+        scrub: 0.8,
         anticipatePin: 1,
         invalidateOnRefresh: true,
       }
     });
 
-    // Scroll the track horizontally
-    tl.to(track, {
-      x: () => -getScrollDistance(),
-      ease: 'none',
-    }, 0);
+    // === PHASE 1 (0% - 35%): Dots morph into cards ===
+    monoliths.forEach((monolith, i) => {
+      const startAt = i * 0.06; // stagger: 0, 0.06, 0.12, 0.18
 
-    // Morph each monolith from dot to card (staggered)
-    monoliths.forEach((monolith, index) => {
+      // Morph dot → card
       tl.to(monolith, {
-        width: '380px',
-        height: '480px',
+        width: '360px',
+        height: '460px',
         borderRadius: '24px',
-        background: 'transparent',
-        boxShadow: '0 8px 40px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 84, 250, 0.08)',
-        duration: 0.5,
-        ease: 'power2.inOut'
-      }, index * 0.3);
+        background: 'rgba(255,255,255,0)',
+        boxShadow: '0 8px 40px rgba(0,0,0,0.06), 0 0 0 1px rgba(229,229,234,1)',
+        duration: 0.15,
+        ease: 'power2.out'
+      }, startAt);
 
-      // Fade in card content after morph
+      // Fade in content
       const content = monolith.querySelector('.monolith-content');
       if (content) {
         tl.to(content, {
           opacity: 1,
-          duration: 0.2
-        }, (index * 0.3) + 0.3);
+          duration: 0.08,
+          ease: 'power1.in'
+        }, startAt + 0.12);
       }
     });
 
-    // Refresh on resize
-    window.addEventListener('resize', () => ScrollTrigger.refresh());
+    // === PHASE 2 (35% - 95%): Slide track horizontally ===
+    tl.to(track, {
+      x: () => {
+        const trackWidth = track.scrollWidth;
+        const viewportWidth = window.innerWidth;
+        return -(trackWidth - viewportWidth + 100);
+      },
+      duration: 0.6,
+      ease: 'none',
+    }, 0.35);
+
+    // === PHASE 3 (95% - 100%): Brief pause before unpin ===
+    tl.to({}, { duration: 0.05 });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        ScrollTrigger.refresh();
+      }
+    });
   }
 
   ngOnDestroy() {

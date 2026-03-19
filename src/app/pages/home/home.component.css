@@ -190,6 +190,7 @@
 .wwd-scroll-section {
   position: relative;
   overflow: hidden;
+  background: var(--bg);
 }
 .wwd-scroll-inner {
   display: flex;
@@ -204,16 +205,15 @@
 }
 .wwd-track {
   display: flex;
-  gap: 4vw;
-  padding-left: 20px;
-  height: 60vh;
+  gap: 32px;
+  padding-left: 40px;
   align-items: center;
 }
 
-/* Monolith — starts as 10px dot, morphs to card */
+/* Monolith — starts as 12px dot, morphs to card */
 .service-monolith {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background: var(--accent);
   position: relative;
@@ -222,11 +222,11 @@
   justify-content: space-between;
   overflow: hidden;
   flex-shrink: 0;
-  box-shadow: 0 0 20px rgba(0, 84, 250, 0);
+  will-change: width, height, border-radius, box-shadow;
 }
 .monolith-content {
   opacity: 0;
-  padding: 2rem 2rem;
+  padding: 28px 28px;
   width: 100%;
   height: 100%;
   display: flex;
@@ -235,7 +235,7 @@
   background: var(--bg-surface);
   border: 1px solid var(--bg-border);
   border-radius: inherit;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
+  will-change: opacity;
 }
 .monolith-header {
   display: flex;
