@@ -155,11 +155,11 @@
   transform: translateY(-3px);
 }
 .client-logo-card img {
-  height: 52px;
+  height: 80px;
   width: auto;
-  max-width: 200px;
+  max-width: 240px;
   object-fit: contain;
-  filter: grayscale(40%) opacity(0.55);
+  filter: grayscale(30%) opacity(0.6);
   transition: filter 0.4s ease, transform 0.4s ease;
 }
 .client-logo-card:hover img {
@@ -485,9 +485,9 @@
 
 /* ====== TABLET ====== */
 @media (max-width: 1024px) {
-  .client-marquee { gap: 32px; }
+  .client-marquee { gap: 48px; }
   .client-logo-card { padding: 0 16px; }
-  .client-logo-card img { height: 40px; }
+  .client-logo-card img { height: 60px; }
   .statement-card { max-width: 100%; }
 }
 
@@ -501,7 +501,7 @@
   .client-stat-num { font-size: 22px; }
   .client-marquee-wrap { margin-top: 20px; }
   .client-logo-card { padding: 0 12px; }
-  .client-logo-card img { height: 32px; }
+  .client-logo-card img { height: 48px; }
 
   .wwd-section, .hww-section { padding: 32px 24px; }
   .stmt-grid { grid-template-columns: 1fr; }
