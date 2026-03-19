@@ -76,62 +76,72 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
 
     if (!section || !track || monoliths.length === 0) return;
 
+    // How far right the dots need to travel
+    const travelDistance = window.innerWidth - 500; // from intro edge to right edge
+
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
         start: 'top top',
-        end: '+=3000',
+        end: '+=3500',
         pin: true,
-        scrub: 0.8,
+        scrub: 0.6,
         anticipatePin: 1,
         invalidateOnRefresh: true,
       }
     });
 
-    // === SIMULTANEOUS: Morph cards + slide track (like reference) ===
-    // Both happen at position 0, running together
-
-    // Slide track left — runs the entire duration
-    tl.to(track, {
-      x: () => {
-        // After morph, 4 cards at 340px + 3 gaps at 32px = 1456px total track width
-        // Available space = viewport - intro(440px including padding)
-        const introWidth = 440;
-        const available = window.innerWidth - introWidth;
-        const cardsTotal = (340 * 4) + (32 * 3);
-        const overflow = cardsTotal - available;
-        return overflow > 0 ? -(overflow + 60) : 0; // 60px breathing room
-      },
-      duration: 1,
-      ease: 'none',
-    }, 0);
-
-    // Morph each dot → card (staggered, simultaneous with slide)
+    // === PHASE 1 (0% - 30%): Dots travel LEFT to RIGHT ===
+    // Each dot goes further right (staggered spread)
     monoliths.forEach((monolith, i) => {
-      const stagger = i * 0.12; // each card morphs 12% after previous
-
       tl.to(monolith, {
+        x: travelDistance - (i * 60), // spread: first goes furthest right
+        duration: 0.3,
+        ease: 'power2.inOut'
+      }, 0);
+    });
+
+    // === PHASE 2 (30% - 75%): Dots slide back LEFT, morphing into cards ===
+    monoliths.forEach((monolith, i) => {
+      const stagger = 0.30 + (i * 0.08); // each card starts 8% after previous
+
+      // Morph dot → card while returning to natural position
+      tl.to(monolith, {
+        x: 0,
         width: '340px',
         height: '440px',
         borderRadius: '24px',
         background: 'transparent',
         boxShadow: '0 4px 32px rgba(0,0,0,0.06), 0 0 0 1px rgba(229,229,234,1)',
-        duration: 0.25,
-        ease: 'power2.inOut'
+        duration: 0.20,
+        ease: 'power2.out'
       }, stagger);
 
-      // Fade in content after morph
+      // Fade in content once card is formed
       const content = monolith.querySelector('.monolith-content');
       if (content) {
         tl.to(content, {
           opacity: 1,
-          duration: 0.1,
+          duration: 0.08,
           ease: 'power1.in'
-        }, stagger + 0.18);
+        }, stagger + 0.15);
       }
     });
 
-    // Hold briefly before unpin
+    // === PHASE 3 (75% - 95%): Slide track left so all 4 cards are visible ===
+    tl.to(track, {
+      x: () => {
+        const introWidth = 440;
+        const available = window.innerWidth - introWidth;
+        const cardsTotal = (340 * 4) + (32 * 3);
+        const overflow = cardsTotal - available;
+        return overflow > 0 ? -(overflow + 60) : 0;
+      },
+      duration: 0.20,
+      ease: 'power1.inOut',
+    }, 0.72);
+
+    // === PHASE 4 (95% - 100%): Hold before unpin ===
     tl.to({}, { duration: 0.05 });
 
     window.addEventListener('resize', () => {
