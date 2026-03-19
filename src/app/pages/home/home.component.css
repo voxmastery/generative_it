@@ -27,46 +27,61 @@
   position: absolute;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.12;
-  filter: blur(1px);
+  opacity: 0.35;
 }
 
 /* Hero shapes */
 .cs-hero-1 {
-  width: 180px;
-  top: 10%;
-  right: 8%;
+  width: 280px;
+  top: 5%;
+  right: 4%;
   animation: csFloat1 8s ease-in-out infinite;
 }
 .cs-hero-2 {
-  width: 140px;
-  bottom: 15%;
-  left: 5%;
+  width: 220px;
+  bottom: 5%;
+  left: 3%;
   animation: csFloat2 10s ease-in-out infinite;
-  opacity: 0.08;
-  filter: blur(2px);
+  opacity: 0.25;
 }
 .cs-hero-3 {
-  width: 100px;
-  top: 40%;
-  right: 3%;
+  width: 160px;
+  top: 35%;
+  left: 12%;
   animation: csFloat3 12s ease-in-out infinite;
-  opacity: 0.10;
+  opacity: 0.20;
 }
 
 /* CTA shapes */
 .cs-cta-1 {
-  width: 160px;
-  top: 10%;
-  left: 8%;
+  width: 240px;
+  top: 5%;
+  left: 5%;
   animation: csFloat2 9s ease-in-out infinite;
+  opacity: 0.30;
 }
 .cs-cta-2 {
-  width: 120px;
-  bottom: 15%;
-  right: 6%;
+  width: 200px;
+  bottom: 5%;
+  right: 4%;
   animation: csFloat1 11s ease-in-out infinite;
-  opacity: 0.10;
+  opacity: 0.25;
+}
+
+/* Testimonial shapes */
+.cs-tst-1 {
+  width: 200px;
+  top: 5%;
+  right: 5%;
+  animation: csFloat3 9s ease-in-out infinite;
+  opacity: 0.22;
+}
+.cs-tst-2 {
+  width: 150px;
+  bottom: 10%;
+  left: 4%;
+  animation: csFloat1 11s ease-in-out infinite;
+  opacity: 0.18;
 }
 
 @keyframes csFloat1 {
