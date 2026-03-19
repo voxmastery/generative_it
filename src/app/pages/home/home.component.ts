@@ -20,6 +20,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     if (!this.isBrowser) return;
 
+    // Hero parallax (scroll-driven, no GSAP needed)
     const heroTitle = document.querySelector<HTMLElement>('.hero-title');
     const heroSub = document.querySelector<HTMLElement>('.hero-sub');
     const heroBadge = document.querySelector<HTMLElement>('.hero-badge');
@@ -70,6 +71,72 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     };
 
     window.addEventListener('scroll', this.scrollHandler, { passive: true });
+
+    // GSAP horizontal scroll for What We Do monoliths
+    this.initServicesScroll();
+  }
+
+  private async initServicesScroll() {
+    const gsapModule = await import('gsap');
+    const scrollTriggerModule = await import('gsap/ScrollTrigger');
+
+    const gsap = gsapModule.default || gsapModule.gsap;
+    const ScrollTrigger = scrollTriggerModule.default || scrollTriggerModule.ScrollTrigger;
+    gsap.registerPlugin(ScrollTrigger);
+
+    const section = document.querySelector('.wwd-scroll-section');
+    const track = document.querySelector('.wwd-track');
+    const monoliths = document.querySelectorAll('.service-monolith');
+
+    if (!section || !track || monoliths.length === 0) return;
+
+    const getScrollDistance = () => {
+      return track.scrollWidth - window.innerWidth + 400;
+    };
+
+    // Pin the section and create the horizontal scroll timeline
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: 'top top',
+        end: () => `+=${getScrollDistance()}`,
+        pin: true,
+        scrub: 1,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+      }
+    });
+
+    // Scroll the track horizontally
+    tl.to(track, {
+      x: () => -getScrollDistance(),
+      ease: 'none',
+    }, 0);
+
+    // Morph each monolith from dot to card (staggered)
+    monoliths.forEach((monolith, index) => {
+      tl.to(monolith, {
+        width: '380px',
+        height: '480px',
+        borderRadius: '24px',
+        background: 'transparent',
+        boxShadow: '0 8px 40px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 84, 250, 0.08)',
+        duration: 0.5,
+        ease: 'power2.inOut'
+      }, index * 0.3);
+
+      // Fade in card content after morph
+      const content = monolith.querySelector('.monolith-content');
+      if (content) {
+        tl.to(content, {
+          opacity: 1,
+          duration: 0.2
+        }, (index * 0.3) + 0.3);
+      }
+    });
+
+    // Refresh on resize
+    window.addEventListener('resize', () => ScrollTrigger.refresh());
   }
 
   ngOnDestroy() {

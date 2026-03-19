@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:stark": "node dist/stark/server/server.mjs"
+    "serve:ssr:stark": "node dist/stark/server/server.mjs",
+    "test:e2e": "playwright test"
   },
   "private": true,
   "dependencies": {
@@ -23,6 +24,7 @@
     "@angular/ssr": "^17.3.4",
     "@fortawesome/fontawesome-free": "^6.5.2",
     "express": "^4.18.2",
+    "gsap": "^3.14.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
@@ -31,6 +33,7 @@
     "@angular-devkit/build-angular": "^17.3.4",
     "@angular/cli": "^17.3.4",
     "@angular/compiler-cli": "^17.3.0",
+    "@playwright/test": "^1.58.2",
     "@types/express": "^4.17.17",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^18.18.0",

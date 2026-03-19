@@ -186,27 +186,126 @@
 .clients-cta:hover { gap: 12px; color: #0243c7; }
 .clients-cta i { font-size: 12px; }
 
-/* ====== STATEMENT + GRID (What We Do & How We Work) ====== */
-.wwd-section, .hww-section {
+/* ====== WHAT WE DO — Horizontal Scroll Monoliths ====== */
+.wwd-scroll-section {
   position: relative;
-  padding: 48px 40px; /* 48 between major sections */
+  overflow: hidden;
+}
+.wwd-scroll-inner {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  padding: 0 6vw;
+}
+.wwd-intro {
+  flex-shrink: 0;
+  width: 380px;
+  padding-right: 60px;
+}
+.wwd-track {
+  display: flex;
+  gap: 4vw;
+  padding-left: 20px;
+  height: 60vh;
+  align-items: center;
+}
+
+/* Monolith — starts as 10px dot, morphs to card */
+.service-monolith {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 0 20px rgba(0, 84, 250, 0);
+}
+.monolith-content {
+  opacity: 0;
+  padding: 2rem 2rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--bg-surface);
+  border: 1px solid var(--bg-border);
+  border-radius: inherit;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
+}
+.monolith-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid var(--bg-border);
+  padding-bottom: 1rem;
+}
+.monolith-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.monolith-num {
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+}
+.monolith-body { display: flex; flex-direction: column; gap: 8px; }
+.monolith-body h3 {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--text-primary);
+}
+.monolith-body > p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.monolith-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 8px;
+}
+.monolith-list li {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.monolith-list li::before {
+  content: '+';
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* ====== SHARED + HOW WE WORK ====== */
+.hww-section {
+  position: relative;
+  padding: 48px 40px;
 }
 .statement-card {
   max-width: 1060px;
   margin: 0 auto;
-  padding: 0; /* no extra padding — the frost class handles border/radius */
+  padding: 0;
   overflow: hidden;
 }
 .stmt-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0;
-}
-.stmt-left {
-  padding: 40px 40px; /* 40 internal padding — consistent */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 .stmt-headline {
   font-size: 36px;
@@ -506,9 +605,33 @@
   .client-logo-card { padding: 0 12px; }
   .client-logo-card img { height: 48px; }
 
-  .wwd-section, .hww-section { padding: 32px 24px; }
+  /* Mobile: disable horizontal scroll, show cards vertically */
+  .wwd-scroll-section { overflow: visible; }
+  .wwd-scroll-inner {
+    flex-direction: column;
+    height: auto;
+    padding: 32px 24px;
+  }
+  .wwd-intro { width: 100%; padding-right: 0; margin-bottom: 32px; }
+  .wwd-track {
+    flex-direction: column;
+    gap: 16px;
+    height: auto;
+    padding-left: 0;
+  }
+  .service-monolith {
+    width: 100% !important;
+    height: auto !important;
+    border-radius: 24px !important;
+    background: transparent !important;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.04) !important;
+  }
+  .monolith-content {
+    opacity: 1 !important;
+    padding: 24px;
+  }
+  .hww-section { padding: 32px 24px; }
   .stmt-grid { grid-template-columns: 1fr; }
-  .stmt-left { padding: 32px 24px; }
   .stmt-headline { font-size: 28px; }
 
   .tst-section { padding: 40px 24px; }
