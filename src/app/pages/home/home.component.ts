@@ -59,6 +59,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     window.addEventListener('scroll', this.scrollHandler, { passive: true });
 
     this.initServicesScroll();
+    this.initDropCards();
   }
 
   private async initServicesScroll() {
@@ -146,6 +147,47 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
 
     window.addEventListener('resize', () => {
       if (window.innerWidth > 768) ScrollTrigger.refresh();
+    });
+  }
+
+  private async initDropCards() {
+    const gsapModule = await import('gsap');
+    const scrollTriggerModule = await import('gsap/ScrollTrigger');
+    const gsap = gsapModule.default || gsapModule.gsap;
+    const ScrollTrigger = scrollTriggerModule.default || scrollTriggerModule.ScrollTrigger;
+    gsap.registerPlugin(ScrollTrigger);
+
+    const cards = document.querySelectorAll<HTMLElement>('.drop-card');
+    if (cards.length === 0) return;
+
+    // Set initial state — each card starts higher, with different rotation
+    cards.forEach((card, i) => {
+      gsap.set(card, {
+        y: -(180 + i * 40),       // higher for later cards
+        rotation: -5 + (i * 3),    // varied tilt: -5, -2, 1, 4
+        scale: 0.75,
+        opacity: 0,
+      });
+    });
+
+    // Each card drops independently, triggered by scroll
+    cards.forEach((card, i) => {
+      gsap.to(card, {
+        scrollTrigger: {
+          trigger: '.hww-drop-zone',
+          start: 'top 75%',
+          toggleActions: 'play none none reverse',
+        },
+        y: 0,
+        rotation: 0,
+        scale: 1,
+        opacity: 1,
+        duration: 0.7,
+        delay: i * 0.18,  // stagger: 0s, 0.18s, 0.36s, 0.54s
+        ease: 'bounce.out',
+        onComplete: () => card.classList.add('landed'),
+        onReverseComplete: () => card.classList.remove('landed'),
+      });
     });
   }
 
