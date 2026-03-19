@@ -160,18 +160,20 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     gsap.registerPlugin(ScrollTrigger);
 
     const section = document.querySelector('.hww-drop-section');
+    const card = document.querySelector<HTMLElement>('.hww-card');
+    const intro = document.querySelector<HTMLElement>('.hww-intro');
     const cells = document.querySelectorAll<HTMLElement>('.drop-cell');
 
-    if (!section || cells.length === 0) return;
+    if (!section || !card || !intro || cells.length === 0) return;
 
-    // Drop order: top-left(0), top-right(1), bottom-left(2), bottom-right(3)
-    // Each starts high above with slight rotation, drops and bounces into place
-    const startRotations = [-4, 3, -2, 5]; // slight random rotations while falling
+    const startRotations = [-4, 3, -2, 5];
 
-    // Set initial state — cards above with rotation
+    // Set initial states
+    gsap.set(card, { x: -window.innerWidth, opacity: 0 });
+    gsap.set(intro, { opacity: 0, y: 20 });
     cells.forEach((cell, i) => {
       gsap.set(cell, {
-        y: -600,
+        y: -500,
         rotation: startRotations[i],
         opacity: 0,
         transformOrigin: 'center center',
@@ -182,7 +184,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       scrollTrigger: {
         trigger: section,
         start: 'top top',
-        end: '+=2000',
+        end: '+=3000',
         pin: true,
         scrub: 0.6,
         anticipatePin: 1,
@@ -190,20 +192,36 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       }
     });
 
-    // Drop each cell one by one with bounce
+    // === PHASE 1 (0% - 20%): Container slides in from left ===
+    tl.to(card, {
+      x: 0,
+      opacity: 1,
+      duration: 0.20,
+      ease: 'power3.out',
+    }, 0);
+
+    // === PHASE 2 (15% - 30%): Intro text fades in ===
+    tl.to(intro, {
+      opacity: 1,
+      y: 0,
+      duration: 0.12,
+      ease: 'power2.out',
+    }, 0.15);
+
+    // === PHASE 3 (30% - 80%): Cells drop like Tetris ===
     cells.forEach((cell, i) => {
-      const stagger = i * 0.20;
+      const stagger = 0.30 + (i * 0.12);
 
       tl.to(cell, {
         y: 0,
         rotation: 0,
         opacity: 1,
-        duration: 0.20,
+        duration: 0.15,
         ease: 'bounce.out',
       }, stagger);
     });
 
-    // Hold all cards visible before unpin
+    // === PHASE 4 (80% - 100%): Hold before unpin ===
     tl.to({}, { duration: 0.18 });
 
     window.addEventListener('resize', () => {
