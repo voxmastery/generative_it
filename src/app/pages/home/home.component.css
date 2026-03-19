@@ -139,7 +139,7 @@
 .client-marquee {
   display: flex;
   gap: 64px;
-  animation: clientScroll 18s linear infinite;
+  animation: clientScroll 25s linear infinite;
   width: max-content;
 }
 .client-marquee:hover { animation-play-state: paused; }
