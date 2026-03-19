@@ -1,8 +1,18 @@
 footer {
   background: #0a0a0e;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
+  position: relative;
   color: white;
   padding: 60px 60px 30px;
+}
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 20%;
+  right: 20%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 102, 255, 0.3), rgba(0, 212, 170, 0.2), transparent);
 }
 .ft-grid {
   display: flex;

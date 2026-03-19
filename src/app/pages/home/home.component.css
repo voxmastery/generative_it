@@ -82,9 +82,11 @@
 .client-logos img {
   height: 120px;
   width: auto;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 16px 32px;
   border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  filter: brightness(1.8) contrast(0.9);
 }
 
 /* ====== STATEMENT + GRID (What We Do & How We Work) ====== */
@@ -116,6 +118,9 @@
   line-height: 1.15;
   letter-spacing: -1.5px;
   margin-bottom: 16px; /* 16 headline to subtitle */
+}
+.stmt-headline .thin {
+  color: #a0a0b4;
 }
 .stmt-sub {
   font-size: 15px;
@@ -195,7 +200,7 @@
   align-items: center;
   gap: 8px;
 }
-.step-line { flex: 1; height: 1px; background: rgba(255, 255, 255, 0.15); }
+.step-line { flex: 1; height: 1px; background: rgba(255, 255, 255, 0.18); }
 .step-cell h4 {
   font-size: 16px;
   font-weight: 700;
@@ -311,13 +316,13 @@
 }
 .tech-marquee:hover { animation-play-state: paused; }
 .tech-pill {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: 50px;
   padding: 14px 28px;
   font-size: 16px;
-  color: var(--text-secondary);
-  font-weight: 600;
+  color: #a0a0b4;
+  font-weight: 500;
   flex-shrink: 0;
   white-space: nowrap;
   transition: all 0.3s;
@@ -344,8 +349,9 @@
   font-weight: 800;
   letter-spacing: -2.5px;
   line-height: 1.08;
+  color: var(--text-primary);
 }
-.cta-title .thin { color: var(--text-secondary); }
+.cta-title .thin { color: #a0a0b4; }
 .cta-sub {
   color: var(--text-secondary);
   font-size: 18px;
