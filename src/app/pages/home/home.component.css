@@ -363,11 +363,9 @@
 
 /* ====== TABLET ====== */
 @media (max-width: 1024px) {
-  .hero-title { font-size: 56px; }
   .client-logos { gap: 40px; }
   .client-logos img { height: 80px; }
   .statement-card { max-width: 100%; }
-  .cta-title { font-size: 48px; }
 }
 
 /* ====== MOBILE ====== */
