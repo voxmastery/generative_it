@@ -169,63 +169,53 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     const startRotations = [-4, 3, -2, 5];
 
     // Set initial states
-    gsap.set(card, { x: -window.innerWidth, opacity: 0 });
+    gsap.set(card, { x: -200, opacity: 0 });
     gsap.set(intro, { opacity: 0, y: 20 });
     cells.forEach((cell, i) => {
       gsap.set(cell, {
-        y: -500,
+        y: -300,
         rotation: startRotations[i],
         opacity: 0,
         transformOrigin: 'center center',
       });
     });
 
+    // No pin — triggers when section scrolls into view
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
-        start: 'top top',
-        end: '+=3000',
-        pin: true,
-        scrub: 0.6,
-        anticipatePin: 1,
+        start: 'top 75%',
+        end: 'bottom 20%',
+        scrub: 0.5,
         invalidateOnRefresh: true,
       }
     });
 
-    // === PHASE 1 (0% - 20%): Container slides in from left ===
+    // Container slides in from left
     tl.to(card, {
       x: 0,
       opacity: 1,
-      duration: 0.20,
+      duration: 0.25,
       ease: 'power3.out',
     }, 0);
 
-    // === PHASE 2 (15% - 30%): Intro text fades in ===
+    // Intro text fades in
     tl.to(intro, {
       opacity: 1,
       y: 0,
-      duration: 0.12,
+      duration: 0.15,
       ease: 'power2.out',
-    }, 0.15);
+    }, 0.10);
 
-    // === PHASE 3 (30% - 80%): Cells drop like Tetris ===
+    // Cells drop like Tetris — staggered
     cells.forEach((cell, i) => {
-      const stagger = 0.30 + (i * 0.12);
-
       tl.to(cell, {
         y: 0,
         rotation: 0,
         opacity: 1,
-        duration: 0.15,
+        duration: 0.18,
         ease: 'bounce.out',
-      }, stagger);
-    });
-
-    // === PHASE 4 (80% - 100%): Hold before unpin ===
-    tl.to({}, { duration: 0.18 });
-
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 768) ScrollTrigger.refresh();
+      }, 0.20 + (i * 0.12));
     });
   }
 
