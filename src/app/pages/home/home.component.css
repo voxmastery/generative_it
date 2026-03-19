@@ -32,8 +32,8 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(0, 84, 250, 0.06);
-  border: 1px solid rgba(0, 84, 250, 0.15);
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.2);
   padding: 8px 20px;
   border-radius: 50px;
   font-size: 13px;
@@ -70,9 +70,9 @@
 .clients {
   padding: 56px 40px 48px;
   text-align: center;
-  background: linear-gradient(180deg, rgba(0, 84, 250, 0.02) 0%, rgba(2, 213, 217, 0.02) 100%);
-  border-top: 1px solid rgba(0, 84, 250, 0.06);
-  border-bottom: 1px solid rgba(0, 84, 250, 0.06);
+  background: linear-gradient(180deg, rgba(0, 240, 255, 0.02) 0%, rgba(0, 95, 138, 0.02) 100%);
+  border-top: 1px solid rgba(0, 240, 255, 0.06);
+  border-bottom: 1px solid rgba(0, 240, 255, 0.06);
 }
 .clients .section-label {
   font-size: 18px;
@@ -137,8 +137,8 @@
   z-index: 2;
   pointer-events: none;
 }
-.client-marquee-wrap::before { left: 0; background: linear-gradient(90deg, #f7f8fb, transparent); }
-.client-marquee-wrap::after { right: 0; background: linear-gradient(-90deg, #f7f8fb, transparent); }
+.client-marquee-wrap::before { left: 0; background: linear-gradient(90deg, #02050a, transparent); }
+.client-marquee-wrap::after { right: 0; background: linear-gradient(-90deg, #02050a, transparent); }
 .client-marquee {
   display: flex;
   gap: 64px;
@@ -162,11 +162,11 @@
   width: auto;
   max-width: 240px;
   object-fit: contain;
-  filter: grayscale(30%) opacity(0.6);
+  filter: brightness(2) contrast(0.9) grayscale(30%) opacity(0.6);
   transition: filter 0.4s ease, transform 0.4s ease;
 }
 .client-logo-card:hover img {
-  filter: grayscale(0%) opacity(1);
+  filter: brightness(2) contrast(0.9) grayscale(0%) opacity(1);
   transform: scale(1.06);
 }
 @keyframes clientScroll {
@@ -235,8 +235,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: var(--bg-surface);
-  border: 1px solid var(--bg-border);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: inherit;
   will-change: opacity;
 }
@@ -301,7 +301,11 @@
   background: var(--bg);
 }
 .hww-drop-inner {
-  padding: 48px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 0 40px;
 }
 .hww-card {
   max-width: 1060px;
@@ -323,12 +327,12 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1px;
-  background: var(--bg-border);
+  background: rgba(255, 255, 255, 0.06);
   overflow: hidden;
   border-radius: 0 0 28px 0;
 }
 .drop-cell {
-  background: var(--bg);
+  background: rgba(255, 255, 255, 0.02);
   padding: 28px 24px;
   position: relative;
   overflow: hidden;
@@ -339,7 +343,7 @@
   transition: background 0.3s;
 }
 .drop-cell:hover {
-  background: var(--bg-elevated);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .drop-num {
@@ -494,15 +498,15 @@
   position: absolute;
   top: -50%; left: -50%;
   width: 200%; height: 200%;
-  background: radial-gradient(circle at center, rgba(0, 84, 250, 0.03) 0%, transparent 60%);
+  background: radial-gradient(circle at center, rgba(0, 240, 255, 0.06) 0%, transparent 60%);
   opacity: 0;
   transition: opacity 0.4s;
   pointer-events: none;
 }
 .tst-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 16px 40px rgba(0,84,250,0.08);
-  border-color: rgba(0, 84, 250, 0.15);
+  box-shadow: 0 16px 40px rgba(0, 240, 255, 0.08);
+  border-color: rgba(0, 240, 255, 0.2);
   animation-play-state: paused;
 }
 .tst-card:hover::after { opacity: 1; }
@@ -553,8 +557,8 @@
   z-index: 2;
   pointer-events: none;
 }
-.tech-marquee-wrap::before { left: 0; background: linear-gradient(90deg, var(--bg), transparent); }
-.tech-marquee-wrap::after { right: 0; background: linear-gradient(-90deg, var(--bg), transparent); }
+.tech-marquee-wrap::before { left: 0; background: linear-gradient(90deg, #02050a, transparent); }
+.tech-marquee-wrap::after { right: 0; background: linear-gradient(-90deg, #02050a, transparent); }
 
 .tech-marquee {
   display: flex;
@@ -564,8 +568,8 @@
 }
 .tech-marquee:hover { animation-play-state: paused; }
 .tech-pill {
-  background: var(--bg-surface);
-  border: 1px solid var(--bg-border);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 50px;
   padding: 14px 28px;
   font-size: 16px;
@@ -599,7 +603,7 @@
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(0, 84, 250, 0.06) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 240, 255, 0.08) 0%, transparent 70%);
   pointer-events: none;
   z-index: -1;
 }
