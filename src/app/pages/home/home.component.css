@@ -32,19 +32,19 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 84, 250, 0.06);
+  border: 1px solid rgba(0, 84, 250, 0.15);
   padding: 8px 20px;
   border-radius: 50px;
   font-size: 13px;
-  color: var(--accent-cyan);
+  color: var(--accent);
   box-shadow: none;
   margin-bottom: 32px; /* 32 badge to headline */
   font-weight: 500;
 }
-.green-dot { width: 8px; height: 8px; background: var(--accent-cyan); border-radius: 50%; flex-shrink: 0; }
+.green-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
 .hero-title {
-  font-size: 72px;
+  font-size: clamp(42px, 6vw, 72px);
   font-weight: 800;
   line-height: 1.06;
   letter-spacing: -3px;
@@ -82,11 +82,11 @@
 .client-logos img {
   height: 120px;
   width: auto;
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--bg-surface);
   padding: 16px 32px;
   border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  filter: brightness(1.8) contrast(0.9);
+  border: 1px solid var(--bg-border);
+  filter: none;
 }
 
 /* ====== STATEMENT + GRID (What We Do & How We Work) ====== */
@@ -120,7 +120,7 @@
   margin-bottom: 16px; /* 16 headline to subtitle */
 }
 .stmt-headline .thin {
-  color: #a0a0b4;
+  color: var(--text-muted);
 }
 .stmt-sub {
   font-size: 15px;
@@ -134,27 +134,27 @@
   margin-top: 24px; /* 24 subtitle to CTA */
   font-size: 14px;
   font-weight: 600;
-  color: var(--accent-cyan);
+  color: var(--accent);
   transition: gap 0.3s;
 }
-.stmt-cta:hover { gap: 16px; color: var(--accent); }
+.stmt-cta:hover { gap: 16px; color: #0243c7; }
 .stmt-cta i { font-size: 12px; }
 
 .stmt-right {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1px;
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--bg-elevated);
   border-radius: 16px;
   overflow: hidden;
 }
 .stmt-cell {
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--bg);
   backdrop-filter: blur(10px);
   padding: 32px 24px; /* 32 top/bottom, 24 left/right — internal card padding */
   transition: background 0.3s;
 }
-.stmt-cell:hover { background: rgba(255, 255, 255, 0.06); }
+.stmt-cell:hover { background: var(--bg-elevated); }
 .stmt-cell h4 {
   font-size: 16px;
   font-weight: 700;
@@ -185,12 +185,12 @@
 
 /* ====== HOW WE WORK STEPS ====== */
 .step-cell {
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--bg);
   backdrop-filter: blur(10px);
   padding: 28px 24px; /* slightly less than stmt-cell since no icon */
   transition: background 0.3s;
 }
-.step-cell:hover { background: rgba(255, 255, 255, 0.06); }
+.step-cell:hover { background: var(--bg-elevated); }
 .step-num {
   font-size: 24px;
   font-weight: 900;
@@ -200,7 +200,7 @@
   align-items: center;
   gap: 8px;
 }
-.step-line { flex: 1; height: 1px; background: rgba(255, 255, 255, 0.18); }
+.step-line { flex: 1; height: 1px; background: var(--bg-border); }
 .step-cell h4 {
   font-size: 16px;
   font-weight: 700;
@@ -227,7 +227,7 @@
   flex: 1;
   text-align: left;
   /* Idle float — cards bob gently at staggered speeds */
-  animation: tstFloat 6s ease-in-out infinite;
+  animation: none;
   /* Hover transitions */
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
               box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
@@ -246,15 +246,15 @@
   position: absolute;
   top: -50%; left: -50%;
   width: 200%; height: 200%;
-  background: radial-gradient(circle at center, rgba(0, 102, 255, 0.06) 0%, transparent 60%);
+  background: radial-gradient(circle at center, rgba(0, 84, 250, 0.03) 0%, transparent 60%);
   opacity: 0;
   transition: opacity 0.4s;
   pointer-events: none;
 }
 .tst-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-  border-color: rgba(0, 102, 255, 0.2);
+  box-shadow: 0 16px 40px rgba(0,84,250,0.08);
+  border-color: rgba(0, 84, 250, 0.15);
   animation-play-state: paused;
 }
 .tst-card:hover::after { opacity: 1; }
@@ -279,7 +279,7 @@
   align-items: center;
   gap: 12px;
 }
-.tst-avatar { width: 40px; height: 40px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 14px; flex-shrink: 0; }
+.tst-avatar { width: 40px; height: 40px; background: var(--accent-gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 14px; flex-shrink: 0; }
 .tst-name { font-weight: 700; font-size: 14px; }
 
 /* ====== TECH STACK — Infinite Marquee ====== */
@@ -305,8 +305,8 @@
   z-index: 2;
   pointer-events: none;
 }
-.tech-marquee-wrap::before { left: 0; background: linear-gradient(90deg, #0f0f13, transparent); }
-.tech-marquee-wrap::after { right: 0; background: linear-gradient(-90deg, #0f0f13, transparent); }
+.tech-marquee-wrap::before { left: 0; background: linear-gradient(90deg, var(--bg), transparent); }
+.tech-marquee-wrap::after { right: 0; background: linear-gradient(-90deg, var(--bg), transparent); }
 
 .tech-marquee {
   display: flex;
@@ -316,12 +316,12 @@
 }
 .tech-marquee:hover { animation-play-state: paused; }
 .tech-pill {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: var(--bg-surface);
+  border: 1px solid var(--bg-border);
   border-radius: 50px;
   padding: 14px 28px;
   font-size: 16px;
-  color: #a0a0b4;
+  color: var(--text-secondary);
   font-weight: 500;
   flex-shrink: 0;
   white-space: nowrap;
@@ -345,20 +345,20 @@
   padding: 64px 40px 80px; /* 64 top, 80 bottom (before footer, needs breathing room) */
 }
 .cta-title {
-  font-size: 56px;
+  font-size: clamp(36px, 5vw, 56px);
   font-weight: 800;
   letter-spacing: -2.5px;
   line-height: 1.08;
   color: var(--text-primary);
 }
-.cta-title .thin { color: #a0a0b4; }
+.cta-title .thin { color: var(--text-muted); }
 .cta-sub {
   color: var(--text-secondary);
   font-size: 18px;
   margin-top: 16px; /* 16 title to subtitle */
   font-style: italic;
 }
-.cta-sub strong { color: var(--accent-cyan); }
+.cta-sub strong { color: var(--accent); }
 .cta-section .btn-dark { margin-top: 32px; /* 32 subtitle to button */ }
 
 /* ====== TABLET ====== */
@@ -373,7 +373,6 @@
 /* ====== MOBILE ====== */
 @media (max-width: 768px) {
   .hero { padding: 112px 24px 40px; }
-  .hero-title { font-size: 42px; letter-spacing: -1.5px; }
   .hero-sub { font-size: 16px; }
 
   .clients { padding: 32px 24px; }
@@ -393,5 +392,4 @@
   .tech-pill { padding: 10px 20px; font-size: 14px; }
 
   .cta-section { padding: 48px 24px 64px; }
-  .cta-title { font-size: 36px; letter-spacing: -1px; }
 }
