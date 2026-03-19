@@ -196,7 +196,7 @@
   display: flex;
   align-items: center;
   height: 100vh;
-  padding: 0 6vw;
+  padding: 0 6vw 0 2vw;
 }
 .wwd-intro {
   flex-shrink: 0;
