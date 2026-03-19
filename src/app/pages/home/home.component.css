@@ -68,6 +68,33 @@
   opacity: 0.25;
 }
 
+/* Clients shape */
+.cs-clients-1 {
+  width: 160px;
+  top: -20px;
+  right: 8%;
+  animation: csFloat1 10s ease-in-out infinite;
+  opacity: 0.18;
+}
+
+/* How We Work shape */
+.cs-hww-1 {
+  width: 180px;
+  top: 10%;
+  right: 5%;
+  animation: csFloat2 9s ease-in-out infinite;
+  opacity: 0.20;
+}
+
+/* Tech stack shape */
+.cs-tech-1 {
+  width: 140px;
+  top: -10px;
+  left: 6%;
+  animation: csFloat3 8s ease-in-out infinite;
+  opacity: 0.18;
+}
+
 /* Testimonial shapes */
 .cs-tst-1 {
   width: 200px;
