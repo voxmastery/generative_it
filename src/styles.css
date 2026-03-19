@@ -117,11 +117,12 @@ button {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--text-secondary);
 }
 
 .thin {
-  font-weight: 300;
+  font-weight: 400;
+  color: var(--text-secondary);
 }
 
 /* ---------- Buttons ---------- */
@@ -129,15 +130,15 @@ button {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   padding: 14px 36px; font-size: 15px; font-weight: 600;
   border-radius: var(--radius-pill);
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.08);
   color: var(--text-primary);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   transition: all 0.3s;
   cursor: pointer;
 }
 .btn-pill:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.2);
   transform: translateY(-1px);
 }
 
