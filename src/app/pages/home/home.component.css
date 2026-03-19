@@ -200,8 +200,8 @@
 }
 .wwd-intro {
   flex-shrink: 0;
-  width: 380px;
-  padding-right: 60px;
+  width: 300px;
+  padding-right: 40px;
 }
 .wwd-track {
   display: flex;

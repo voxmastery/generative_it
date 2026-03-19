@@ -77,7 +77,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     if (!section || !track || monoliths.length === 0) return;
 
     // How far right the dots need to travel
-    const travelDistance = window.innerWidth - 500; // from intro edge to right edge
+    const travelDistance = window.innerWidth - 420; // from intro edge to right edge
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -131,7 +131,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     // === PHASE 3 (75% - 95%): Slide track left so all 4 cards are visible ===
     tl.to(track, {
       x: () => {
-        const introWidth = 440;
+        const introWidth = 360;
         const available = window.innerWidth - introWidth;
         const cardsTotal = (340 * 4) + (32 * 3);
         const overflow = cardsTotal - available;
