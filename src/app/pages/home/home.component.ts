@@ -404,9 +404,8 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       if (content) gsap.set(content, { opacity: 0 });
     });
 
-    // Each card: 24% of timeline (enter 8%, hold 8%, exit 8%)
     const perCard = 0.24;
-    const totalScroll = 5000;
+    const totalScroll = 7000;
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -414,7 +413,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
         start: 'top top',
         end: `+=${totalScroll}`,
         pin: true,
-        scrub: 0.5,
+        scrub: 1.2,
         anticipatePin: 1,
         invalidateOnRefresh: true,
       }
@@ -424,62 +423,61 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       const s = i * perCard;
       const content = monolith.querySelector('.monolith-content');
 
-      // === ENTER: Dot slides from right to center ===
+      // === ENTER: Dot glides from right to center ===
       tl.to(monolith, {
         x: 0,
-        duration: 0.03,
-        ease: 'power2.out',
+        duration: 0.05,
+        ease: 'power3.out',
       }, s);
 
-      // === MORPH: Dot expands into card ===
+      // === MORPH: Dot smoothly expands into card ===
       tl.to(monolith, {
         width: cardWidth,
         height: cardHeight,
         borderRadius: '20px',
         background: '#ffffff',
         boxShadow: '0 4px 32px rgba(0,0,0,0.06), 0 0 0 1px rgba(229,229,234,1)',
-        duration: 0.04,
-        ease: 'power2.out',
-      }, s + 0.03);
+        duration: 0.06,
+        ease: 'power2.inOut',
+      }, s + 0.04);
 
       // === REVEAL: Content fades in ===
       if (content) {
         tl.to(content, {
           opacity: 1,
-          duration: 0.03,
-        }, s + 0.06);
+          duration: 0.04,
+          ease: 'power1.in',
+        }, s + 0.08);
       }
 
       // === HOLD: Card stays visible for reading ===
-      // (implicit — gap between reveal end and exit start)
 
       // === EXIT: Content fades, card shrinks to dot, exits left ===
       if (i < monoliths.length - 1) {
-        // Fade out content
         if (content) {
           tl.to(content, {
             opacity: 0,
-            duration: 0.02,
+            duration: 0.03,
           }, s + 0.15);
         }
 
-        // Shrink back to dot
+        // Shrink back to dot smoothly
         tl.to(monolith, {
           width: dotSize,
           height: dotSize,
           borderRadius: '50%',
           background: '#0E6FFF',
-          boxShadow: '0 0 12px rgba(14,111,255,0.4)',
-          duration: 0.04,
-          ease: 'power2.in',
+          boxShadow: '0 0 10px rgba(14,111,255,0.3)',
+          duration: 0.05,
+          ease: 'power2.inOut',
         }, s + 0.17);
 
-        // Dot exits to the left
+        // Dot glides out left
         tl.to(monolith, {
           x: -(vw + 50),
-          duration: 0.03,
-          ease: 'power2.in',
-        }, s + 0.20);
+          duration: 0.04,
+          ease: 'power3.in',
+        }, s + 0.21);
       }
     });
 
