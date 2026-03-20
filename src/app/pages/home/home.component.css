@@ -130,13 +130,14 @@
   opacity: 0.18;
 }
 
-/* Tech stack shapes */
+/* Tech stack shapes — behind marquee content */
 .cs-tech-1 {
   width: 140px;
   top: 5px;
   left: 4%;
   animation: csFloat3 8s ease-in-out infinite;
   opacity: 0.18;
+  z-index: -1;
 }
 .cs-tech-2 {
   width: 120px;
@@ -144,6 +145,7 @@
   right: 5%;
   animation: csFloat1 10s ease-in-out infinite;
   opacity: 0.15;
+  z-index: -1;
 }
 
 /* Testimonial shapes */
