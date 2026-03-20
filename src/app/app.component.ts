@@ -28,59 +28,118 @@ export class AppComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     if (this.isBrowser) {
-      const container = document.getElementById('sparkleContainer');
-      if (!container) return;
-
-      const colors = ['#0E6FFF', '#00F0FF', '#0E6FFF', '#00F0FF', '#8b5cf6'];
-      const sizes = [8, 10, 12, 14, 16];
-      let lastSpawn = 0;
-      let lastX = 0, lastY = 0;
-
-      window.addEventListener('mousemove', (e) => {
-        const now = Date.now();
-        const dx = e.clientX - lastX;
-        const dy = e.clientY - lastY;
-        const speed = Math.sqrt(dx * dx + dy * dy);
-
-        // Only spawn sparkles when moving, throttled to every 50ms
-        if (now - lastSpawn < 50 || speed < 3) {
-          lastX = e.clientX;
-          lastY = e.clientY;
-          return;
-        }
-
-        lastSpawn = now;
-        lastX = e.clientX;
-        lastY = e.clientY;
-
-        // Spawn 1-2 sparkles at cursor position
-        const count = speed > 30 ? 2 : 1;
-        for (let i = 0; i < count; i++) {
-          const sparkle = document.createElement('div');
-          sparkle.className = 'sparkle';
-
-          const color = colors[Math.floor(Math.random() * colors.length)];
-          const size = sizes[Math.floor(Math.random() * sizes.length)];
-          const offsetX = (Math.random() - 0.5) * 24;
-          const offsetY = (Math.random() - 0.5) * 24;
-
-          sparkle.style.left = (e.clientX + offsetX) + 'px';
-          sparkle.style.top = (e.clientY + offsetY) + 'px';
-          sparkle.style.width = size + 'px';
-          sparkle.style.height = size + 'px';
-          sparkle.innerHTML = `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 0C100 55 55 100 0 100C55 100 100 145 100 200C100 145 145 100 200 100C145 100 100 55 100 0Z" fill="${color}"/></svg>`;
-
-          container.appendChild(sparkle);
-
-          // Remove after animation completes
-          setTimeout(() => sparkle.remove(), 800);
-        }
-
-        // Safety: limit max sparkles in DOM
-        while (container.children.length > 30) {
-          container.removeChild(container.firstChild!);
-        }
-      });
+      this.initSparkleCanvas();
     }
+  }
+
+  private initSparkleCanvas() {
+    const canvas = document.getElementById('sparkleCanvas') as HTMLCanvasElement;
+    if (!canvas || window.matchMedia('(pointer: coarse)').matches) return;
+
+    const ctx = canvas.getContext('2d')!;
+    const dpr = window.devicePixelRatio || 1;
+
+    const resize = () => {
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      ctx.scale(dpr, dpr);
+    };
+    resize();
+    window.addEventListener('resize', resize);
+
+    interface Sparkle {
+      x: number; y: number;
+      size: number; rotation: number;
+      opacity: number; life: number;
+      maxLife: number; vy: number;
+      color: string; rotSpeed: number;
+    }
+
+    const sparkles: Sparkle[] = [];
+    const colors = ['#0E6FFF', '#00F0FF', '#0E6FFF', '#00F0FF', '#8b5cf6'];
+    let mouseX = 0, mouseY = 0, lastX = 0, lastY = 0;
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+
+      const dx = mouseX - lastX;
+      const dy = mouseY - lastY;
+      const speed = Math.sqrt(dx * dx + dy * dy);
+
+      if (speed > 3) {
+        const count = speed > 40 ? 3 : speed > 15 ? 2 : 1;
+        for (let i = 0; i < count; i++) {
+          sparkles.push({
+            x: mouseX + (Math.random() - 0.5) * 20,
+            y: mouseY + (Math.random() - 0.5) * 20,
+            size: 4 + Math.random() * 8,
+            rotation: Math.random() * Math.PI * 2,
+            opacity: 0.7 + Math.random() * 0.3,
+            life: 0,
+            maxLife: 30 + Math.random() * 20,
+            vy: -(0.5 + Math.random() * 1.5),
+            color: colors[Math.floor(Math.random() * colors.length)],
+            rotSpeed: (Math.random() - 0.5) * 0.15,
+          });
+        }
+      }
+
+      lastX = mouseX;
+      lastY = mouseY;
+    });
+
+    // Draw 4-point star shape
+    const drawStar = (cx: number, cy: number, size: number, rotation: number) => {
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(rotation);
+      const s = size;
+      ctx.beginPath();
+      ctx.moveTo(0, -s);
+      ctx.bezierCurveTo(s * 0.1, -s * 0.1, s * 0.1, -s * 0.1, s, 0);
+      ctx.bezierCurveTo(s * 0.1, s * 0.1, s * 0.1, s * 0.1, 0, s);
+      ctx.bezierCurveTo(-s * 0.1, s * 0.1, -s * 0.1, s * 0.1, -s, 0);
+      ctx.bezierCurveTo(-s * 0.1, -s * 0.1, -s * 0.1, -s * 0.1, 0, -s);
+      ctx.closePath();
+      ctx.restore();
+    };
+
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width / dpr, canvas.height / dpr);
+
+      for (let i = sparkles.length - 1; i >= 0; i--) {
+        const s = sparkles[i];
+        s.life++;
+        s.y += s.vy;
+        s.rotation += s.rotSpeed;
+        s.opacity *= 0.96;
+
+        if (s.life > s.maxLife) {
+          sparkles.splice(i, 1);
+          continue;
+        }
+
+        const progress = s.life / s.maxLife;
+        const scale = progress < 0.3 ? progress / 0.3 : 1 - (progress - 0.3) / 0.7;
+
+        ctx.globalAlpha = s.opacity * scale;
+        ctx.fillStyle = s.color;
+        ctx.shadowColor = s.color;
+        ctx.shadowBlur = 6;
+
+        drawStar(s.x, s.y, s.size * scale, s.rotation);
+        ctx.fill();
+
+        ctx.shadowBlur = 0;
+      }
+
+      // Cap max particles
+      if (sparkles.length > 60) sparkles.splice(0, sparkles.length - 60);
+
+      requestAnimationFrame(animate);
+    };
+
+    animate();
   }
 }
