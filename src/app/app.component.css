@@ -105,10 +105,12 @@ main, app-footer {
 }
 
 .sparkle {
-  position: absolute;
+  position: fixed;
   pointer-events: none;
   animation: sparkleFade 0.7s ease-out forwards;
   filter: drop-shadow(0 0 3px rgba(14, 111, 255, 0.5));
+  margin-left: -6px;
+  margin-top: -6px;
 }
 
 .sparkle svg {
