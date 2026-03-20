@@ -93,7 +93,7 @@ button {
 /* ---------- Frost glass ---------- */
 .frost {
   background: var(--bg-surface);
-  border: 1px solid var(--bg-border);
+  border: 1px solid rgba(14, 111, 255, 0.10);
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-sm);
 }
