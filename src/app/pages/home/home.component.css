@@ -147,12 +147,10 @@
   .coolshape { width: 80px !important; opacity: 0.10 !important; }
 }
 @media (max-width: 768px) {
-  /* Even smaller on phone, only show hero + CTA shapes */
-  .coolshape { display: none !important; }
-  .cs-hero-1, .cs-hero-2, .cs-cta-1, .cs-cta-2 {
+  .coolshape {
     display: block !important;
-    width: 100px !important;
-    opacity: 0.10 !important;
+    width: 90px !important;
+    opacity: 0.12 !important;
   }
 }
 @media (max-width: 768px) {
