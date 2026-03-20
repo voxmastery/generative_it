@@ -144,6 +144,8 @@
 @media (max-width: 768px) {
   .coolshape { display: none; }
   .scroll-hint { display: none; }
+  /* Reset hero opacity since GSAP reveal doesn't run on mobile */
+  .hero-badge, .hero-title, .hero-sub, .hero .btn-dark { opacity: 1; }
 }
 
 /* Hero entrance — hidden initially, GSAP reveals */
@@ -800,6 +802,7 @@
   .clients { padding: 32px 24px; }
   .clients-stats { gap: 24px; margin-top: 16px; flex-wrap: wrap; justify-content: center; }
   .client-stat-num { font-size: 22px; }
+  .client-marquee { gap: 32px; }
   .client-marquee-wrap { margin-top: 20px; }
   .client-logo-card { padding: 0 12px; }
   .client-logo-card img { height: 48px; }
@@ -844,6 +847,7 @@
   .tst-card { animation: none; } /* disable float on mobile */
 
   .tech-section { padding: 32px 0; }
+  .tech-marquee { gap: 10px; }
   .tech-pill { padding: 10px 20px; font-size: 14px; }
 
   .cta-section { padding: 48px 24px 64px; }

@@ -116,6 +116,7 @@
     border-radius: 20px;
     padding: 12px 16px;
   }
+  .nav-logo { font-size: 16px; }
   .hamburger { display: flex; }
   .nav-links {
     display: none;
