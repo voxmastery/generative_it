@@ -27,104 +27,105 @@
   position: absolute;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.35;
+  opacity: 0.18;
 }
 
 /* Hero shapes */
 .cs-hero-1 {
-  width: 280px;
-  top: 5%;
-  right: 4%;
+  width: 220px;
+  top: 8%;
+  right: 5%;
   animation: csFloat1 8s ease-in-out infinite;
+  opacity: 0.15;
 }
 .cs-hero-2 {
-  width: 220px;
-  bottom: 5%;
-  left: 3%;
+  width: 180px;
+  bottom: 8%;
+  left: 4%;
   animation: csFloat2 10s ease-in-out infinite;
-  opacity: 0.25;
+  opacity: 0.12;
 }
 .cs-hero-3 {
-  width: 160px;
-  top: 35%;
-  left: 12%;
+  width: 120px;
+  top: 30%;
+  left: 10%;
   animation: csFloat3 12s ease-in-out infinite;
-  opacity: 0.20;
+  opacity: 0.10;
 }
 
 /* CTA shapes */
 .cs-cta-1 {
-  width: 240px;
-  top: 5%;
-  left: 5%;
+  width: 200px;
+  top: 8%;
+  left: 6%;
   animation: csFloat2 9s ease-in-out infinite;
-  opacity: 0.30;
+  opacity: 0.15;
 }
 .cs-cta-2 {
-  width: 200px;
-  bottom: 5%;
-  right: 4%;
+  width: 160px;
+  bottom: 8%;
+  right: 5%;
   animation: csFloat1 11s ease-in-out infinite;
-  opacity: 0.25;
+  opacity: 0.12;
 }
 
 /* What We Do shapes */
 .cs-wwd-1 {
-  width: 200px;
-  bottom: 8%;
+  width: 160px;
+  bottom: 6%;
   right: 3%;
   animation: csFloat1 10s ease-in-out infinite;
-  opacity: 0.22;
+  opacity: 0.14;
 }
 .cs-wwd-2 {
-  width: 140px;
-  top: 12%;
+  width: 110px;
+  top: 10%;
   left: 2%;
   animation: csFloat3 12s ease-in-out infinite;
-  opacity: 0.16;
+  opacity: 0.10;
 }
 
 /* Clients shape */
 .cs-clients-1 {
-  width: 160px;
-  top: -20px;
-  right: 8%;
+  width: 120px;
+  top: 10px;
+  right: 6%;
   animation: csFloat1 10s ease-in-out infinite;
-  opacity: 0.18;
+  opacity: 0.14;
 }
 
 /* How We Work shape */
 .cs-hww-1 {
-  width: 180px;
+  width: 150px;
   top: 10%;
-  right: 5%;
+  right: 4%;
   animation: csFloat2 9s ease-in-out infinite;
-  opacity: 0.20;
+  opacity: 0.15;
 }
 
 /* Tech stack shape */
 .cs-tech-1 {
-  width: 140px;
-  top: -10px;
-  left: 6%;
+  width: 120px;
+  top: 10px;
+  left: 5%;
   animation: csFloat3 8s ease-in-out infinite;
-  opacity: 0.18;
+  opacity: 0.14;
 }
 
 /* Testimonial shapes */
 .cs-tst-1 {
-  width: 200px;
+  width: 160px;
   top: 5%;
-  right: 5%;
+  right: 4%;
   animation: csFloat3 9s ease-in-out infinite;
-  opacity: 0.22;
+  opacity: 0.15;
 }
 .cs-tst-2 {
-  width: 150px;
-  bottom: 10%;
-  left: 4%;
+  width: 120px;
+  bottom: 8%;
+  left: 3%;
   animation: csFloat1 11s ease-in-out infinite;
-  opacity: 0.18;
+  opacity: 0.12;
 }
 
 @keyframes csFloat1 {
