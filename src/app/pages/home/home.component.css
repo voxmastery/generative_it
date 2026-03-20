@@ -146,6 +146,11 @@
   .scroll-hint { display: none; }
 }
 
+/* Hero entrance — hidden initially, GSAP reveals */
+.hero-badge, .hero-title, .hero-sub, .hero .btn-dark {
+  opacity: 0;
+}
+
 /* ====== HERO ====== */
 .hero {
   position: relative;

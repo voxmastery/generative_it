@@ -77,6 +77,10 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     this.initServicesScroll();
     this.initTetrisDrop();
     this.initMagneticButtons();
+    this.initCardTilt();
+    this.initHeroTextReveal();
+    this.initScrollReveal();
+    this.initCounters();
   }
 
   private async initServicesScroll() {
@@ -242,6 +246,123 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
 
     window.addEventListener('resize', () => {
       if (window.innerWidth > 768) ScrollTrigger.refresh();
+    });
+  }
+
+  private async initScrollReveal() {
+    if (!this.isBrowser || window.innerWidth <= 768) return;
+
+    const gsapModule = await import('gsap');
+    const scrollTriggerModule = await import('gsap/ScrollTrigger');
+    const gsap = gsapModule.default || gsapModule.gsap;
+    const ScrollTrigger = scrollTriggerModule.default || scrollTriggerModule.ScrollTrigger;
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Fade-up elements that should animate on scroll
+    const revealElements = document.querySelectorAll(
+      '.tst-section .section-title, .tst-section .section-sub, .tst-card, .tech-section .section-label, .cta-title, .cta-sub, .cta-section .btn-dark'
+    );
+
+    revealElements.forEach((el) => {
+      gsap.fromTo(el as HTMLElement,
+        { y: 40, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: el as HTMLElement,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          }
+        }
+      );
+    });
+  }
+
+  private async initCounters() {
+    if (!this.isBrowser) return;
+
+    const gsapModule = await import('gsap');
+    const scrollTriggerModule = await import('gsap/ScrollTrigger');
+    const gsap = gsapModule.default || gsapModule.gsap;
+    const ScrollTrigger = scrollTriggerModule.default || scrollTriggerModule.ScrollTrigger;
+    gsap.registerPlugin(ScrollTrigger);
+
+    const counters = document.querySelectorAll('.client-stat-num');
+
+    counters.forEach((counter) => {
+      const el = counter as HTMLElement;
+      const text = el.textContent || '';
+      const match = text.match(/(\d+)/);
+      if (!match) return;
+
+      const target = parseInt(match[1]);
+      const suffix = text.replace(match[1], '');
+      const obj = { val: 0 };
+
+      gsap.to(obj, {
+        val: target,
+        duration: 2,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+        },
+        onUpdate: () => {
+          el.textContent = Math.round(obj.val) + suffix;
+        }
+      });
+    });
+  }
+
+  private async initHeroTextReveal() {
+    if (!this.isBrowser) return;
+
+    const gsapModule = await import('gsap');
+    const gsap = gsapModule.default || gsapModule.gsap;
+
+    // Stagger-reveal hero elements
+    const heroElements = [
+      '.hero-badge',
+      '.hero-title',
+      '.hero-sub',
+      '.hero .btn-dark'
+    ];
+
+    gsap.fromTo(heroElements.map(s => document.querySelector(s)).filter(Boolean),
+      { y: 30, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: 'power3.out',
+        delay: 2.5, // after loader finishes
+      }
+    );
+  }
+
+  private initCardTilt() {
+    if (!this.isBrowser) return;
+
+    const cards = document.querySelectorAll<HTMLElement>('.tst-card, .monolith-content');
+
+    cards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        card.style.transform = `perspective(800px) rotateY(${x * 5}deg) rotateX(${-y * 5}deg) translateY(-4px)`;
+        card.style.transition = 'transform 0.1s ease-out';
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(800px) rotateY(0) rotateX(0) translateY(0)';
+        card.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      });
     });
   }
 
