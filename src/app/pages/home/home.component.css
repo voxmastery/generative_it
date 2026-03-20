@@ -142,9 +142,18 @@
 }
 
 @media (max-width: 1024px) {
-  .coolshape { display: none !important; visibility: hidden !important; }
   .scroll-hint { display: none !important; }
-  img[class*="cs-"] { display: none !important; }
+  /* Smaller shapes on tablet/mobile */
+  .coolshape { width: 80px !important; opacity: 0.10 !important; }
+}
+@media (max-width: 768px) {
+  /* Even smaller on phone, only show hero + CTA shapes */
+  .coolshape { display: none !important; }
+  .cs-hero-1, .cs-hero-2, .cs-cta-1, .cs-cta-2 {
+    display: block !important;
+    width: 100px !important;
+    opacity: 0.10 !important;
+  }
 }
 @media (max-width: 768px) {
   /* Reset hero opacity since GSAP reveal doesn't run on mobile */
