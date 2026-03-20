@@ -25,6 +25,7 @@
   --gold: #f59e0b;
   --dark: #1d1d1f;
   --font: 'Plus Jakarta Sans', 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Apfel Grotezk', 'Plus Jakarta Sans', sans-serif;
   --font-mono: 'Space Mono', monospace;
   --transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -99,8 +100,9 @@ button {
 
 /* ---------- Typography ---------- */
 .section-title {
+  font-family: var(--font-display);
   font-size: clamp(28px, 4vw, 52px);
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.08;
   letter-spacing: -0.03em;
   color: var(--text-primary);
