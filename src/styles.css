@@ -102,7 +102,7 @@ button {
 .section-title {
   font-family: var(--font-display);
   font-size: clamp(28px, 4vw, 52px);
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1.08;
   letter-spacing: -0.03em;
   color: var(--text-primary);
