@@ -141,9 +141,11 @@
   50% { transform: translateY(-12px) rotate(12deg) scale(1.05); }
 }
 
+@media (max-width: 1024px) {
+  .coolshape { display: none !important; }
+  .scroll-hint { display: none !important; }
+}
 @media (max-width: 768px) {
-  .coolshape { display: none; }
-  .scroll-hint { display: none; }
   /* Reset hero opacity since GSAP reveal doesn't run on mobile */
   .hero-badge, .hero-title, .hero-sub, .hero .btn-dark { opacity: 1; }
 }

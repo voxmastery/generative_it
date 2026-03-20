@@ -381,25 +381,29 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
 
     if (!section || monoliths.length === 0) return;
 
-    const cardWidth = Math.min(320, window.innerWidth - 48);
-    const cardHeight = 340;
+    const vw = window.innerWidth;
+    const cardWidth = Math.min(vw - 48, 340);
+    const cardHeight = 380;
+    const dotSize = 24;
 
-    // Set all monoliths to dots initially, positioned off-screen right
+    // Set all monoliths as dots off-screen right
     monoliths.forEach((m) => {
       gsap.set(m, {
-        width: 12,
-        height: 12,
+        width: dotSize,
+        height: dotSize,
         borderRadius: '50%',
-        x: window.innerWidth,
+        x: vw + 50,
         opacity: 1,
+        background: '#0E6FFF',
+        boxShadow: '0 0 12px rgba(14,111,255,0.4)',
       });
       const content = m.querySelector('.monolith-content') as HTMLElement;
       if (content) gsap.set(content, { opacity: 0 });
     });
 
-    // Total scroll: each card gets enter + display + exit phases
-    const perCard = 0.22; // 22% of timeline per card
-    const totalScroll = 4000;
+    // Each card: 24% of timeline (enter 8%, hold 8%, exit 8%)
+    const perCard = 0.24;
+    const totalScroll = 5000;
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -414,55 +418,70 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     });
 
     monoliths.forEach((monolith, i) => {
-      const start = i * perCard;
+      const s = i * perCard;
       const content = monolith.querySelector('.monolith-content');
 
-      // Phase 1: Dot enters from right, moves to center, morphs into card
+      // === ENTER: Dot slides from right to center ===
       tl.to(monolith, {
         x: 0,
+        duration: 0.03,
+        ease: 'power2.out',
+      }, s);
+
+      // === MORPH: Dot expands into card ===
+      tl.to(monolith, {
         width: cardWidth,
         height: cardHeight,
         borderRadius: 24,
         background: 'transparent',
         boxShadow: '0 4px 32px rgba(0,0,0,0.06), 0 0 0 1px rgba(229,229,234,1)',
-        duration: 0.08,
+        duration: 0.04,
         ease: 'power2.out',
-      }, start);
+      }, s + 0.03);
 
-      // Fade in content
+      // === REVEAL: Content fades in ===
       if (content) {
         tl.to(content, {
           opacity: 1,
-          duration: 0.04,
-          ease: 'power1.in',
-        }, start + 0.06);
+          duration: 0.03,
+        }, s + 0.06);
       }
 
-      // Phase 2: Hold card visible (display phase — no animation, just holds)
+      // === HOLD: Card stays visible for reading ===
+      // (implicit — gap between reveal end and exit start)
 
-      // Phase 3: Card morphs back to dot and exits left (except last card)
+      // === EXIT: Content fades, card shrinks to dot, exits left ===
       if (i < monoliths.length - 1) {
+        // Fade out content
         if (content) {
           tl.to(content, {
             opacity: 0,
-            duration: 0.03,
-          }, start + 0.14);
+            duration: 0.02,
+          }, s + 0.15);
         }
 
+        // Shrink back to dot
         tl.to(monolith, {
-          width: 12,
-          height: 12,
+          width: dotSize,
+          height: dotSize,
           borderRadius: '50%',
-          x: -window.innerWidth,
-          boxShadow: 'none',
-          duration: 0.06,
+          background: '#0E6FFF',
+          boxShadow: '0 0 12px rgba(14,111,255,0.4)',
+          duration: 0.03,
           ease: 'power2.in',
-        }, start + 0.16);
+        }, s + 0.17);
+
+        // Dot exits to the left
+        tl.to(monolith, {
+          x: -(vw + 50),
+          duration: 0.03,
+          ease: 'power2.in',
+        }, s + 0.20);
       }
     });
 
-    // Hold last card visible before unpin
-    tl.to({}, { duration: 0.10 });
+    // Hold last card before unpin
+    tl.to({}, { duration: 0.06 });
   }
 
   private initMagneticButtons() {
