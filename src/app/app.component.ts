@@ -42,8 +42,8 @@ export class AppComponent implements AfterViewInit {
         const dy = e.clientY - lastY;
         const speed = Math.sqrt(dx * dx + dy * dy);
 
-        // Only spawn sparkles when moving fast enough, throttled to every 60ms
-        if (now - lastSpawn < 60 || speed < 8) {
+        // Only spawn sparkles when moving, throttled to every 50ms
+        if (now - lastSpawn < 50 || speed < 3) {
           lastX = e.clientX;
           lastY = e.clientY;
           return;
@@ -61,13 +61,14 @@ export class AppComponent implements AfterViewInit {
 
           const color = colors[Math.floor(Math.random() * colors.length)];
           const size = sizes[Math.floor(Math.random() * sizes.length)];
-          const offsetX = (Math.random() - 0.5) * 20;
-          const offsetY = (Math.random() - 0.5) * 20;
+          const offsetX = (Math.random() - 0.5) * 24;
+          const offsetY = (Math.random() - 0.5) * 24;
 
           sparkle.style.left = (e.clientX + offsetX) + 'px';
           sparkle.style.top = (e.clientY + offsetY) + 'px';
-          sparkle.style.setProperty('--sparkle-color', color);
-          sparkle.style.setProperty('--sparkle-size', size + 'px');
+          sparkle.style.width = size + 'px';
+          sparkle.style.height = size + 'px';
+          sparkle.innerHTML = `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 0C100 55 55 100 0 100C55 100 100 145 100 200C100 145 145 100 200 100C145 100 100 55 100 0Z" fill="${color}"/></svg>`;
 
           container.appendChild(sparkle);
 
