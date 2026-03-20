@@ -751,6 +751,9 @@
 }
 .tech-marquee-wrap {
   position: relative;
+  margin-top: 16px;
+}
+.tech-marquee-wrap:first-of-type {
   margin-top: 24px;
 }
 /* Fade edges */
@@ -792,9 +795,18 @@
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(14, 111, 255, 0.15);
 }
+.tech-marquee-reverse {
+  animation: techScrollReverse 25s linear infinite;
+}
+.tech-marquee-reverse:hover { animation-play-state: paused; }
+
 @keyframes techScroll {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
+}
+@keyframes techScrollReverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
 }
 
 /* ====== CTA ====== */
