@@ -94,7 +94,16 @@
   opacity: 0.14;
 }
 
-/* How We Work shape */
+/* Clients shape 2 */
+.cs-clients-2 {
+  width: 100px;
+  bottom: 10px;
+  left: 5%;
+  animation: csFloat2 11s ease-in-out infinite;
+  opacity: 0.12;
+}
+
+/* How We Work shapes */
 .cs-hww-1 {
   width: 150px;
   top: 10%;
@@ -102,14 +111,28 @@
   animation: csFloat2 9s ease-in-out infinite;
   opacity: 0.15;
 }
+.cs-hww-2 {
+  width: 120px;
+  bottom: 8%;
+  left: 5%;
+  animation: csFloat1 10s ease-in-out infinite;
+  opacity: 0.12;
+}
 
-/* Tech stack shape */
+/* Tech stack shapes */
 .cs-tech-1 {
   width: 120px;
   top: 10px;
   left: 5%;
   animation: csFloat3 8s ease-in-out infinite;
   opacity: 0.14;
+}
+.cs-tech-2 {
+  width: 100px;
+  bottom: 10px;
+  right: 6%;
+  animation: csFloat1 10s ease-in-out infinite;
+  opacity: 0.12;
 }
 
 /* Testimonial shapes */
