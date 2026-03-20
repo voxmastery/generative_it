@@ -28,29 +28,58 @@ export class AppComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     if (this.isBrowser) {
-      const glow = document.getElementById('cursorGlow');
-      if (glow) {
-        let mouseX = 0, mouseY = 0;
-        let glowX = 0, glowY = 0;
+      const container = document.getElementById('sparkleContainer');
+      if (!container) return;
 
-        window.addEventListener('mousemove', (e) => {
-          mouseX = e.clientX;
-          mouseY = e.clientY;
-          glow.classList.add('active');
-        });
+      const colors = ['#0E6FFF', '#00F0FF', '#0E6FFF', '#00F0FF', '#8b5cf6'];
+      const sizes = [8, 10, 12, 14, 16];
+      let lastSpawn = 0;
+      let lastX = 0, lastY = 0;
 
-        const animateGlow = () => {
-          glowX += (mouseX - glowX) * 0.08;
-          glowY += (mouseY - glowY) * 0.08;
-          glow.style.transform = `translate(${glowX - 150}px, ${glowY - 150}px)`;
-          requestAnimationFrame(animateGlow);
-        };
-        requestAnimationFrame(animateGlow);
+      window.addEventListener('mousemove', (e) => {
+        const now = Date.now();
+        const dx = e.clientX - lastX;
+        const dy = e.clientY - lastY;
+        const speed = Math.sqrt(dx * dx + dy * dy);
 
-        // Hide on mouse leave
-        document.addEventListener('mouseleave', () => glow.classList.remove('active'));
-        document.addEventListener('mouseenter', () => glow.classList.add('active'));
-      }
+        // Only spawn sparkles when moving fast enough, throttled to every 60ms
+        if (now - lastSpawn < 60 || speed < 8) {
+          lastX = e.clientX;
+          lastY = e.clientY;
+          return;
+        }
+
+        lastSpawn = now;
+        lastX = e.clientX;
+        lastY = e.clientY;
+
+        // Spawn 1-2 sparkles at cursor position
+        const count = speed > 30 ? 2 : 1;
+        for (let i = 0; i < count; i++) {
+          const sparkle = document.createElement('div');
+          sparkle.className = 'sparkle';
+
+          const color = colors[Math.floor(Math.random() * colors.length)];
+          const size = sizes[Math.floor(Math.random() * sizes.length)];
+          const offsetX = (Math.random() - 0.5) * 20;
+          const offsetY = (Math.random() - 0.5) * 20;
+
+          sparkle.style.left = (e.clientX + offsetX) + 'px';
+          sparkle.style.top = (e.clientY + offsetY) + 'px';
+          sparkle.style.setProperty('--sparkle-color', color);
+          sparkle.style.setProperty('--sparkle-size', size + 'px');
+
+          container.appendChild(sparkle);
+
+          // Remove after animation completes
+          setTimeout(() => sparkle.remove(), 800);
+        }
+
+        // Safety: limit max sparkles in DOM
+        while (container.children.length > 30) {
+          container.removeChild(container.firstChild!);
+        }
+      });
     }
   }
 }
