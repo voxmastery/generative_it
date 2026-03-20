@@ -142,8 +142,9 @@
 }
 
 @media (max-width: 1024px) {
-  .coolshape { display: none !important; }
+  .coolshape { display: none !important; visibility: hidden !important; }
   .scroll-hint { display: none !important; }
+  img[class*="cs-"] { display: none !important; }
 }
 @media (max-width: 768px) {
   /* Reset hero opacity since GSAP reveal doesn't run on mobile */

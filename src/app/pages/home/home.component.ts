@@ -382,9 +382,9 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     if (!section || monoliths.length === 0) return;
 
     const vw = window.innerWidth;
-    const cardWidth = Math.min(vw - 48, 340);
-    const cardHeight = 380;
-    const dotSize = 24;
+    const cardWidth = vw - 48;
+    const cardHeight = 420;
+    const dotSize = 20;
 
     // Set all monoliths as dots off-screen right
     monoliths.forEach((m) => {
@@ -432,8 +432,8 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       tl.to(monolith, {
         width: cardWidth,
         height: cardHeight,
-        borderRadius: 24,
-        background: 'transparent',
+        borderRadius: '20px',
+        background: '#ffffff',
         boxShadow: '0 4px 32px rgba(0,0,0,0.06), 0 0 0 1px rgba(229,229,234,1)',
         duration: 0.04,
         ease: 'power2.out',
@@ -467,7 +467,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
           borderRadius: '50%',
           background: '#0E6FFF',
           boxShadow: '0 0 12px rgba(14,111,255,0.4)',
-          duration: 0.03,
+          duration: 0.04,
           ease: 'power2.in',
         }, s + 0.17);
 
