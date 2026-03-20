@@ -337,7 +337,7 @@
   transform: translateY(-3px);
 }
 .client-logo-card img {
-  height: 80px;
+  height: 100px;
   width: auto;
   max-width: 240px;
   object-fit: contain;
