@@ -22,6 +22,19 @@
   background-clip: text;
 }
 
+/* ====== SECTION BACKGROUND IMAGES ====== */
+.section-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+}
+
 /* ====== COOLSHAPE DECORATIONS ====== */
 .coolshape {
   position: absolute;
