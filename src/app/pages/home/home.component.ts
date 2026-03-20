@@ -382,9 +382,9 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     if (!section || monoliths.length === 0) return;
 
     const vw = window.innerWidth;
-    const cardWidth = vw - 48;
-    const cardHeight = 420;
-    const dotSize = 20;
+    const cardWidth = vw - 56;
+    const cardHeight = 260;
+    const dotSize = 16;
 
     // Set all monoliths as dots off-screen right
     monoliths.forEach((m) => {

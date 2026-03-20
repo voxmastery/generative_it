@@ -824,7 +824,7 @@
     position: relative;
     flex-direction: row;
     gap: 0;
-    height: 360px;
+    height: 280px;
     padding-left: 0;
     justify-content: center;
     align-items: center;
@@ -835,8 +835,13 @@
     /* GSAP controls width/height/position on mobile */
   }
   .monolith-content {
-    padding: 20px;
+    padding: 16px;
   }
+  .monolith-num { font-size: 1.4rem; }
+  .monolith-header { padding-bottom: 8px; }
+  .monolith-body h3 { font-size: 18px; }
+  .monolith-body > p { font-size: 13px; }
+  .monolith-list li { font-size: 11px; margin-bottom: 3px; }
   .hww-drop-section { overflow: visible; }
   .hww-drop-inner { height: auto; padding: 32px 24px; }
   .hww-card-grid { grid-template-columns: 1fr; }
