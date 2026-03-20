@@ -77,8 +77,8 @@ export class AppComponent implements AfterViewInit {
             rotation: Math.random() * Math.PI * 2,
             opacity: 0.7 + Math.random() * 0.3,
             life: 0,
-            maxLife: 30 + Math.random() * 20,
-            vy: -(0.5 + Math.random() * 1.5),
+            maxLife: 60 + Math.random() * 40,
+            vy: -(0.3 + Math.random() * 0.8),
             color: colors[Math.floor(Math.random() * colors.length)],
             rotSpeed: (Math.random() - 0.5) * 0.15,
           });
@@ -113,7 +113,7 @@ export class AppComponent implements AfterViewInit {
         s.life++;
         s.y += s.vy;
         s.rotation += s.rotSpeed;
-        s.opacity *= 0.96;
+        s.opacity *= 0.985;
 
         if (s.life > s.maxLife) {
           sparkles.splice(i, 1);
