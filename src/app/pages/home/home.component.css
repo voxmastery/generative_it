@@ -49,117 +49,117 @@
   top: 15%;
   right: 18%;
   animation: csFloat1 8s ease-in-out infinite;
-  opacity: 0.18;
+  opacity: 0.25;
 }
 .cs-hero-2 {
   width: 120px;
   bottom: 20%;
   right: 10%;
   animation: csFloat2 10s ease-in-out infinite;
-  opacity: 0.15;
+  opacity: 0.20;
 }
 .cs-hero-3 {
   width: 100px;
   top: 60%;
   left: 18%;
   animation: csFloat3 12s ease-in-out infinite;
-  opacity: 0.12;
+  opacity: 0.15;
 }
 
-/* CTA shapes — complement the gradient bg */
+/* CTA shapes */
 .cs-cta-1 {
-  width: 130px;
-  top: 15%;
-  left: 15%;
+  width: 220px;
+  top: 6%;
+  left: 5%;
   animation: csFloat2 9s ease-in-out infinite;
-  opacity: 0.16;
+  opacity: 0.22;
 }
 .cs-cta-2 {
-  width: 110px;
-  bottom: 15%;
-  right: 12%;
+  width: 180px;
+  bottom: 6%;
+  right: 4%;
   animation: csFloat1 11s ease-in-out infinite;
-  opacity: 0.14;
+  opacity: 0.18;
 }
 
-/* What We Do shapes — edges only, avoid card area */
+/* What We Do shapes */
 .cs-wwd-1 {
-  width: 120px;
-  bottom: 10%;
-  right: 1%;
+  width: 180px;
+  bottom: 5%;
+  right: 2%;
   animation: csFloat1 10s ease-in-out infinite;
-  opacity: 0.14;
+  opacity: 0.20;
 }
 .cs-wwd-2 {
-  width: 90px;
-  top: 12%;
-  left: 0%;
+  width: 130px;
+  top: 8%;
+  left: 1%;
   animation: csFloat3 12s ease-in-out infinite;
-  opacity: 0.10;
+  opacity: 0.15;
 }
 
 /* Clients shapes */
 .cs-clients-1 {
-  width: 100px;
-  top: 15%;
-  right: 3%;
+  width: 140px;
+  top: 5px;
+  right: 5%;
   animation: csFloat1 10s ease-in-out infinite;
-  opacity: 0.14;
+  opacity: 0.18;
 }
 .cs-clients-2 {
-  width: 80px;
-  bottom: 15%;
-  left: 2%;
+  width: 110px;
+  bottom: 5px;
+  left: 4%;
   animation: csFloat2 11s ease-in-out infinite;
-  opacity: 0.12;
+  opacity: 0.15;
 }
 
-/* How We Work shapes — corners away from frost card */
+/* How We Work shapes */
 .cs-hww-1 {
-  width: 110px;
-  top: 5%;
-  right: 2%;
+  width: 170px;
+  top: 8%;
+  right: 3%;
   animation: csFloat2 9s ease-in-out infinite;
-  opacity: 0.14;
+  opacity: 0.20;
 }
 .cs-hww-2 {
-  width: 90px;
-  bottom: 5%;
-  left: 2%;
+  width: 140px;
+  bottom: 6%;
+  left: 4%;
   animation: csFloat1 10s ease-in-out infinite;
-  opacity: 0.12;
+  opacity: 0.18;
 }
 
-/* Tech stack shapes — small, tucked in corners */
+/* Tech stack shapes */
 .cs-tech-1 {
-  width: 90px;
-  top: 8px;
-  left: 2%;
+  width: 140px;
+  top: 5px;
+  left: 4%;
   animation: csFloat3 8s ease-in-out infinite;
-  opacity: 0.12;
+  opacity: 0.18;
 }
 .cs-tech-2 {
-  width: 80px;
-  bottom: 8px;
-  right: 2%;
+  width: 120px;
+  bottom: 5px;
+  right: 5%;
   animation: csFloat1 10s ease-in-out infinite;
-  opacity: 0.10;
+  opacity: 0.15;
 }
 
-/* Testimonial shapes — flanking the cards */
+/* Testimonial shapes */
 .cs-tst-1 {
-  width: 120px;
-  top: 10%;
-  right: 2%;
+  width: 180px;
+  top: 3%;
+  right: 3%;
   animation: csFloat3 9s ease-in-out infinite;
-  opacity: 0.14;
+  opacity: 0.20;
 }
 .cs-tst-2 {
-  width: 100px;
-  bottom: 10%;
-  left: 1%;
+  width: 140px;
+  bottom: 6%;
+  left: 2%;
   animation: csFloat1 11s ease-in-out infinite;
-  opacity: 0.12;
+  opacity: 0.18;
 }
 
 @keyframes csFloat1 {
