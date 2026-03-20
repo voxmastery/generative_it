@@ -1,3 +1,11 @@
+@if (!loaderHidden) {
+  <div id="app-loader" class="app-loader loader-slide-up"
+       (animationend)="onLoaderAnimationEnd($event)">
+    <div class="loader-label">Initializing Generative environment</div>
+    <div class="loader-bar"><div class="loader-fill" #loaderProgress></div></div>
+  </div>
+}
+
 <a class="skip-nav" href="#main-content">Skip to main content</a>
 
 <app-header></app-header>

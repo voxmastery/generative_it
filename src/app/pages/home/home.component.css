@@ -68,6 +68,22 @@
   opacity: 0.25;
 }
 
+/* What We Do shapes */
+.cs-wwd-1 {
+  width: 200px;
+  bottom: 8%;
+  right: 3%;
+  animation: csFloat1 10s ease-in-out infinite;
+  opacity: 0.22;
+}
+.cs-wwd-2 {
+  width: 140px;
+  top: 12%;
+  left: 2%;
+  animation: csFloat3 12s ease-in-out infinite;
+  opacity: 0.16;
+}
+
 /* Clients shape */
 .cs-clients-1 {
   width: 160px;
