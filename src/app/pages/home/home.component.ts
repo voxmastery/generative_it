@@ -12,13 +12,29 @@ import { RouterLink } from '@angular/router';
 export class HomeComponent implements AfterViewInit, OnDestroy {
   private isBrowser: boolean;
   private scrollHandler: (() => void) | null = null;
+  private lenisInstance: any = null;
 
   constructor(@Inject(PLATFORM_ID) platformId: Object) {
     this.isBrowser = isPlatformBrowser(platformId);
   }
 
-  ngAfterViewInit() {
+  async ngAfterViewInit() {
     if (!this.isBrowser) return;
+
+    // Lenis smooth scroll
+    const Lenis = (await import('lenis')).default;
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      touchMultiplier: 2,
+    });
+    this.lenisInstance = lenis;
+
+    const raf = (time: number) => {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    };
+    requestAnimationFrame(raf);
 
     // Hero parallax
     const heroTitle = document.querySelector<HTMLElement>('.hero-title');
@@ -60,6 +76,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
 
     this.initServicesScroll();
     this.initTetrisDrop();
+    this.initMagneticButtons();
   }
 
   private async initServicesScroll() {
@@ -228,9 +245,36 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     });
   }
 
+  private initMagneticButtons() {
+    if (!this.isBrowser) return;
+
+    const buttons = document.querySelectorAll<HTMLElement>('.btn-dark');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+      });
+
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'translate(0, 0)';
+        btn.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      });
+
+      btn.addEventListener('mouseenter', () => {
+        btn.style.transition = 'transform 0.1s ease-out';
+      });
+    });
+  }
+
   ngOnDestroy() {
     if (this.isBrowser && this.scrollHandler) {
       window.removeEventListener('scroll', this.scrollHandler);
+    }
+    if (this.lenisInstance) {
+      this.lenisInstance.destroy();
     }
   }
 }
