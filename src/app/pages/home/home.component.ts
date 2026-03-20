@@ -383,7 +383,10 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
 
     const vw = window.innerWidth;
     const cardWidth = vw - 56;
-    const cardHeight = 260;
+    // Calculate card height: fill available track space (track is flex:1)
+    const track = document.querySelector('.wwd-track') as HTMLElement;
+    const trackHeight = track?.offsetHeight || 300;
+    const cardHeight = Math.min(trackHeight - 16, 340); // leave 16px breathing room, cap at 340
     const dotSize = 16;
 
     // Set all monoliths as dots off-screen right
@@ -395,7 +398,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
         x: vw + 50,
         opacity: 1,
         background: '#0E6FFF',
-        boxShadow: '0 0 12px rgba(14,111,255,0.4)',
+        boxShadow: '0 0 10px rgba(14,111,255,0.3)',
       });
       const content = m.querySelector('.monolith-content') as HTMLElement;
       if (content) gsap.set(content, { opacity: 0 });
