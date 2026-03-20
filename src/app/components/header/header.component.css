@@ -20,9 +20,12 @@
   width: 100%;
   max-width: 1200px;
   padding: 12px 12px 12px 24px;
-  border-radius: 0;
-  background: transparent;
-  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--bg-border);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
   transition: all var(--transition);
 }
 
@@ -81,7 +84,7 @@
   font-size: 14px !important;
   font-weight: 600 !important;
   transition: opacity 0.2s;
-  box-shadow: 0 2px 12px rgba(0, 84, 250, 0.20);
+  box-shadow: 0 2px 12px rgba(14, 111, 255, 0.20);
 }
 .nav-cta:hover { opacity: 0.9 !important; }
 .nav.scrolled .nav-cta { padding: 9px 20px; font-size: 13px !important; }

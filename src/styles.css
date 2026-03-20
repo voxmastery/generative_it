@@ -16,12 +16,12 @@
   --surface: rgba(0, 0, 0, 0.02);
   --border-frost: #e5e5ea;
   --shadow-sm: 0 2px 16px rgba(0, 0, 0, 0.04);
-  --accent: #0054fa;
-  --accent-cyan: #02d5d9;
-  --accent-gradient: linear-gradient(135deg, #0054fa, #02d5d9);
+  --accent: #0E6FFF;
+  --accent-cyan: #00F0FF;
+  --accent-gradient: linear-gradient(135deg, #0E6FFF, #00F0FF);
   --radius-card: 28px;
   --radius-pill: 80px;
-  --green: #02d5d9;
+  --green: #00F0FF;
   --gold: #f59e0b;
   --dark: #1d1d1f;
   --font: 'Plus Jakarta Sans', 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
@@ -153,14 +153,14 @@ button {
   border: none;
   transition: all 0.3s;
   cursor: pointer;
-  box-shadow: 0 4px 20px rgba(0, 84, 250, 0.20);
+  box-shadow: 0 4px 20px rgba(14, 111, 255, 0.20);
   position: relative;
   overflow: hidden;
 }
 .btn-dark:hover {
   opacity: 0.9;
   transform: translateY(-1px);
-  box-shadow: 0 8px 30px rgba(0, 84, 250, 0.35);
+  box-shadow: 0 8px 30px rgba(14, 111, 255, 0.35);
 }
 .btn-dark::after {
   content: '';

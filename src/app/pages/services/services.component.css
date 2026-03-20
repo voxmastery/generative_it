@@ -40,8 +40,8 @@
 }
 .svc-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 60px rgba(0, 84, 250, 0.08);
-  border-color: rgba(0, 84, 250, 0.15);
+  box-shadow: 0 20px 60px rgba(14, 111, 255, 0.08);
+  border-color: rgba(14, 111, 255, 0.15);
 }
 .svc-card.reverse {
   direction: rtl;

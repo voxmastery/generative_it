@@ -154,8 +154,8 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(0, 84, 250, 0.06);
-  border: 1px solid rgba(0, 84, 250, 0.15);
+  background: rgba(14, 111, 255, 0.06);
+  border: 1px solid rgba(14, 111, 255, 0.15);
   padding: 8px 20px;
   border-radius: 50px;
   font-size: 13px;
@@ -192,9 +192,9 @@
 .clients {
   padding: 56px 40px 48px;
   text-align: center;
-  background: linear-gradient(180deg, rgba(0, 84, 250, 0.02) 0%, rgba(2, 213, 217, 0.02) 100%);
-  border-top: 1px solid rgba(0, 84, 250, 0.06);
-  border-bottom: 1px solid rgba(0, 84, 250, 0.06);
+  background: linear-gradient(180deg, rgba(14, 111, 255, 0.02) 0%, rgba(2, 213, 217, 0.02) 100%);
+  border-top: 1px solid rgba(14, 111, 255, 0.06);
+  border-bottom: 1px solid rgba(14, 111, 255, 0.06);
 }
 .clients .section-label {
   font-size: 18px;
@@ -305,7 +305,7 @@
   color: var(--accent);
   transition: gap 0.3s, color 0.3s;
 }
-.clients-cta:hover { gap: 12px; color: #0243c7; }
+.clients-cta:hover { gap: 12px; color: #0B5AD4; }
 .clients-cta i { font-size: 12px; }
 
 /* ====== WHAT WE DO — Horizontal Scroll Monoliths ====== */
@@ -520,7 +520,7 @@
   color: var(--accent);
   transition: gap 0.3s;
 }
-.stmt-cta:hover { gap: 16px; color: #0243c7; }
+.stmt-cta:hover { gap: 16px; color: #0B5AD4; }
 .stmt-cta i { font-size: 12px; }
 
 .stmt-right {
@@ -620,15 +620,15 @@
   position: absolute;
   top: -50%; left: -50%;
   width: 200%; height: 200%;
-  background: radial-gradient(circle at center, rgba(0, 84, 250, 0.03) 0%, transparent 60%);
+  background: radial-gradient(circle at center, rgba(14, 111, 255, 0.03) 0%, transparent 60%);
   opacity: 0;
   transition: opacity 0.4s;
   pointer-events: none;
 }
 .tst-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 16px 40px rgba(0,84,250,0.08);
-  border-color: rgba(0, 84, 250, 0.15);
+  box-shadow: 0 16px 40px rgba(14,111,255,0.08);
+  border-color: rgba(14, 111, 255, 0.15);
   animation-play-state: paused;
 }
 .tst-card:hover::after { opacity: 1; }
@@ -706,7 +706,7 @@
   color: white;
   border-color: transparent;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 84, 250, 0.15);
+  box-shadow: 0 6px 20px rgba(14, 111, 255, 0.15);
 }
 @keyframes techScroll {
   0% { transform: translateX(0); }
@@ -725,7 +725,7 @@
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(0, 84, 250, 0.06) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(14, 111, 255, 0.06) 0%, transparent 70%);
   pointer-events: none;
   z-index: -1;
 }

@@ -10,7 +10,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  color: #02d5d9;
+  color: #00F0FF;
   font-family: 'Space Mono', monospace;
 }
 #app-loader .loader-label {
@@ -32,9 +32,9 @@
   top: 0;
   left: 0;
   height: 100%;
-  background: #02d5d9;
+  background: #00F0FF;
   width: 0;
-  box-shadow: 0 0 10px #02d5d9;
+  box-shadow: 0 0 10px #00F0FF;
   animation: loader-progress 2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
 }
 #app-loader.loader-slide-up {
