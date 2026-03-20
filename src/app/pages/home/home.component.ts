@@ -84,7 +84,10 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   }
 
   private async initServicesScroll() {
-    if (window.innerWidth <= 768) return;
+    if (window.innerWidth <= 768) {
+      this.initMobileServicesCarousel();
+      return;
+    }
 
     const gsapModule = await import('gsap');
     const scrollTriggerModule = await import('gsap/ScrollTrigger');
@@ -364,6 +367,102 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
         card.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
       });
     });
+  }
+
+  private async initMobileServicesCarousel() {
+    const gsapModule = await import('gsap');
+    const scrollTriggerModule = await import('gsap/ScrollTrigger');
+    const gsap = gsapModule.default || gsapModule.gsap;
+    const ScrollTrigger = scrollTriggerModule.default || scrollTriggerModule.ScrollTrigger;
+    gsap.registerPlugin(ScrollTrigger);
+
+    const section = document.querySelector('.wwd-scroll-section');
+    const monoliths = document.querySelectorAll<HTMLElement>('.service-monolith');
+
+    if (!section || monoliths.length === 0) return;
+
+    const cardWidth = Math.min(320, window.innerWidth - 48);
+    const cardHeight = 340;
+
+    // Set all monoliths to dots initially, positioned off-screen right
+    monoliths.forEach((m) => {
+      gsap.set(m, {
+        width: 12,
+        height: 12,
+        borderRadius: '50%',
+        x: window.innerWidth,
+        opacity: 1,
+      });
+      const content = m.querySelector('.monolith-content') as HTMLElement;
+      if (content) gsap.set(content, { opacity: 0 });
+    });
+
+    // Total scroll: each card gets enter + display + exit phases
+    const perCard = 0.22; // 22% of timeline per card
+    const totalScroll = 4000;
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: 'top top',
+        end: `+=${totalScroll}`,
+        pin: true,
+        scrub: 0.5,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+      }
+    });
+
+    monoliths.forEach((monolith, i) => {
+      const start = i * perCard;
+      const content = monolith.querySelector('.monolith-content');
+
+      // Phase 1: Dot enters from right, moves to center, morphs into card
+      tl.to(monolith, {
+        x: 0,
+        width: cardWidth,
+        height: cardHeight,
+        borderRadius: 24,
+        background: 'transparent',
+        boxShadow: '0 4px 32px rgba(0,0,0,0.06), 0 0 0 1px rgba(229,229,234,1)',
+        duration: 0.08,
+        ease: 'power2.out',
+      }, start);
+
+      // Fade in content
+      if (content) {
+        tl.to(content, {
+          opacity: 1,
+          duration: 0.04,
+          ease: 'power1.in',
+        }, start + 0.06);
+      }
+
+      // Phase 2: Hold card visible (display phase — no animation, just holds)
+
+      // Phase 3: Card morphs back to dot and exits left (except last card)
+      if (i < monoliths.length - 1) {
+        if (content) {
+          tl.to(content, {
+            opacity: 0,
+            duration: 0.03,
+          }, start + 0.14);
+        }
+
+        tl.to(monolith, {
+          width: 12,
+          height: 12,
+          borderRadius: '50%',
+          x: -window.innerWidth,
+          boxShadow: 'none',
+          duration: 0.06,
+          ease: 'power2.in',
+        }, start + 0.16);
+      }
+    });
+
+    // Hold last card visible before unpin
+    tl.to({}, { duration: 0.10 });
   }
 
   private initMagneticButtons() {

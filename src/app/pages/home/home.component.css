@@ -807,29 +807,31 @@
   .client-logo-card { padding: 0 12px; }
   .client-logo-card img { height: 48px; }
 
-  /* Mobile: disable horizontal scroll, show cards vertically */
-  .wwd-scroll-section { overflow: visible; }
+  /* Mobile: scroll-driven card carousel */
+  .wwd-scroll-section { overflow: hidden; margin-top: 32px; }
   .wwd-scroll-inner {
     flex-direction: column;
-    height: auto;
-    padding: 32px 24px;
+    height: 100vh;
+    padding: 24px;
   }
-  .wwd-intro { width: 100%; padding-right: 0; margin-bottom: 32px; }
+  .wwd-intro { width: 100%; padding-right: 0; margin-bottom: 24px; }
+  .wwd-intro .stmt-headline { font-size: 26px; }
+  .wwd-intro .stmt-sub { font-size: 14px; }
   .wwd-track {
-    flex-direction: column;
-    gap: 16px;
-    height: auto;
+    position: relative;
+    flex-direction: row;
+    gap: 0;
+    height: 360px;
     padding-left: 0;
+    justify-content: center;
+    align-items: center;
+    overflow: visible;
   }
   .service-monolith {
-    width: 100% !important;
-    height: auto !important;
-    border-radius: 24px !important;
-    background: transparent !important;
-    box-shadow: 0 2px 16px rgba(0,0,0,0.04) !important;
+    position: absolute;
+    /* GSAP controls width/height/position on mobile */
   }
   .monolith-content {
-    opacity: 1 !important;
     padding: 20px;
   }
   .hww-drop-section { overflow: visible; }
