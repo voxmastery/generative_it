@@ -42,26 +42,25 @@
 
 /* LOGO */
 .nav-logo {
-  font-weight: 900;
-  font-size: 22px;
-  letter-spacing: -0.8px;
   white-space: nowrap;
-  transition: font-size var(--transition);
+  transition: all var(--transition);
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 .nav-logo-icon {
   height: 56px;
   width: auto;
   transition: height var(--transition);
 }
-.nav-logo .it {
-  font-weight: 400;
-  color: var(--text-secondary);
+.nav-logo-text {
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: -0.3px;
+  color: var(--text-primary);
 }
-.nav.scrolled .nav-logo {
-  font-size: 16px;
+.nav.scrolled .nav-logo-text {
+  font-size: 14px;
 }
 .nav.scrolled .nav-logo-icon {
   height: 32px;
@@ -127,7 +126,7 @@
     border-radius: 20px;
     padding: 12px 16px;
   }
-  .nav-logo { font-size: 16px; }
+  .nav-logo-text { font-size: 14px; }
   .nav-logo-icon { height: 32px; }
   .hamburger { display: flex; }
   .nav-links {
