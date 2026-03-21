@@ -52,7 +52,7 @@
   gap: 8px;
 }
 .nav-logo-icon {
-  height: 44px;
+  height: 56px;
   width: auto;
   transition: height var(--transition);
 }
