@@ -85,7 +85,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
 
   private async initServicesScroll() {
     if (window.innerWidth <= 768) {
-      this.initMobileServicesCarousel();
+      // Mobile: static vertical cards, no GSAP (cross-browser safe)
       return;
     }
 
@@ -108,7 +108,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       scrollTrigger: {
         trigger: section,
         start: 'top top',
-        end: '+=3500',
+        end: '+=2500',
         pin: true,
         scrub: 0.6,
         anticipatePin: 1,
@@ -208,7 +208,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       scrollTrigger: {
         trigger: section,
         start: 'top top',
-        end: '+=2000',
+        end: '+=1500',
         pin: true,
         scrub: 0.6,
         anticipatePin: 1,
