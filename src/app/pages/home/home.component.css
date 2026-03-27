@@ -304,7 +304,7 @@
   position: absolute;
   top: 0; bottom: 0;
   width: 80px;
-  z-index: 2;
+  z-index: 5;
   pointer-events: none;
 }
 .client-marquee-wrap::before { left: 0; background: linear-gradient(90deg, #f7f8fb, transparent); }
@@ -394,11 +394,11 @@
   flex-direction: column;
   align-items: center;
   gap: 6px;
-  z-index: 5;
+  z-index: 10;
 }
 .scroll-hint span {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-muted);
@@ -449,7 +449,7 @@
 }
 .monolith-label {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -769,7 +769,7 @@
   position: absolute;
   top: 0; bottom: 0;
   width: 40px;
-  z-index: 2;
+  z-index: 5;
   pointer-events: none;
 }
 .tst-marquee-wrap::before { left: 0; background: linear-gradient(90deg, var(--bg), transparent); }
@@ -819,7 +819,7 @@
   position: absolute;
   top: 0; bottom: 0;
   width: 120px;
-  z-index: 2;
+  z-index: 5;
   pointer-events: none;
 }
 .tech-marquee-wrap::before { left: 0; background: linear-gradient(90deg, var(--bg), transparent); }
@@ -955,7 +955,7 @@
   .monolith-header { padding-bottom: 8px; }
   .monolith-body h3 { font-size: 18px; }
   .monolith-body > p { font-size: 13px; line-height: 1.5; }
-  .monolith-list li { font-size: 11px; margin-bottom: 3px; }
+  .monolith-list li { font-size: 12px; margin-bottom: 3px; }
   .hww-drop-section { overflow: visible; }
   .hww-drop-inner { height: auto; padding: 32px 24px; }
   .hww-card-grid { grid-template-columns: 1fr; }
@@ -975,4 +975,14 @@
   .tech-pill { padding: 10px 20px; font-size: 14px; }
 
   .cta-section { padding: 48px 24px 64px; }
+}
+
+/* ====== REDUCED MOTION ====== */
+@media (prefers-reduced-motion: reduce) {
+  .coolshape { animation: none !important; }
+  .client-marquee { animation: none !important; }
+  .tst-marquee { animation: none !important; }
+  .tech-marquee { animation: none !important; }
+  .service-monolith { transition: none !important; }
+  .scroll-hint-arrow { animation: none !important; }
 }

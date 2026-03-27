@@ -21,6 +21,8 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   async ngAfterViewInit() {
     if (!this.isBrowser) return;
 
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     // Lenis smooth scroll
     const Lenis = (await import('lenis')).default;
     const lenis = new Lenis({
@@ -35,6 +37,13 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       requestAnimationFrame(raf);
     };
     requestAnimationFrame(raf);
+
+    if (prefersReducedMotion) {
+      // Show all content statically without animations
+      this.showStaticContent();
+      this.initCounters();
+      return;
+    }
 
     // Hero parallax
     const heroTitle = document.querySelector<HTMLElement>('.hero-title');
@@ -83,6 +92,38 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     this.initCounters();
   }
 
+  /** Show all animated content statically for reduced-motion users */
+  private showStaticContent(): void {
+    // Show hero elements
+    document.querySelectorAll<HTMLElement>('.hero-badge, .hero-title, .hero-sub, .hero .btn-dark').forEach(el => {
+      el.style.opacity = '1';
+    });
+    // Show service cards expanded
+    document.querySelectorAll<HTMLElement>('.service-monolith').forEach(m => {
+      m.style.width = window.innerWidth <= 768 ? '100%' : '300px';
+      m.style.height = window.innerWidth <= 768 ? 'auto' : '400px';
+      m.style.borderRadius = '20px';
+      m.style.background = '#ffffff';
+      m.style.boxShadow = '0 4px 32px rgba(0,0,0,0.06)';
+      const content = m.querySelector<HTMLElement>('.monolith-content');
+      if (content) content.style.opacity = '1';
+    });
+    // Show HWW card and cells
+    const hwwCard = document.querySelector<HTMLElement>('.hww-card');
+    const hwwIntro = document.querySelector<HTMLElement>('.hww-intro');
+    if (hwwCard) { hwwCard.style.opacity = '1'; hwwCard.style.transform = 'none'; }
+    if (hwwIntro) hwwIntro.style.opacity = '1';
+    document.querySelectorAll<HTMLElement>('.drop-cell').forEach(cell => {
+      cell.style.opacity = '1';
+      cell.style.transform = 'none';
+    });
+    // Show scroll-reveal elements
+    document.querySelectorAll<HTMLElement>('.tst-section .section-title, .tst-section .section-sub, .tst-card, .tech-section .section-label, .cta-title, .cta-sub, .cta-section .btn-dark').forEach(el => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    });
+  }
+
   private async initServicesScroll() {
     if (window.innerWidth <= 768) {
       this.initMobileServicesCarousel();
@@ -108,7 +149,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       scrollTrigger: {
         trigger: section,
         start: 'top top',
-        end: '+=2500',
+        end: '+=2000',
         pin: true,
         scrub: 0.6,
         anticipatePin: 1,
@@ -208,7 +249,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       scrollTrigger: {
         trigger: section,
         start: 'top top',
-        end: '+=1500',
+        end: '+=1200',
         pin: true,
         scrub: 0.6,
         anticipatePin: 1,
@@ -405,7 +446,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     });
 
     const perCard = 0.24;
-    const totalScroll = 3500;
+    const totalScroll = 2000;
 
     const tl = gsap.timeline({
       scrollTrigger: {
