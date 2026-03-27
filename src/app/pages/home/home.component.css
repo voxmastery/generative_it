@@ -179,24 +179,10 @@
 
 @media (max-width: 1024px) {
   .scroll-hint { display: none !important; }
-  /* Smaller shapes on tablet */
-  .coolshape { width: 80px !important; opacity: 0.12 !important; }
 }
 @media (max-width: 768px) {
   /* Reset hero opacity since GSAP reveal doesn't run on mobile */
   .hero-badge, .hero-title, .hero-sub, .hero .btn-dark { opacity: 1; }
-  /* Coolshapes visible but contained — no overflow */
-  .coolshape {
-    display: block !important;
-    width: 60px !important;
-    opacity: 0.15 !important;
-    pointer-events: none;
-  }
-  .section-bg {
-    opacity: 0.3 !important;
-    width: 100% !important;
-    max-width: 100vw !important;
-  }
 }
 
 /* Hero entrance — hidden initially, GSAP reveals */
@@ -934,37 +920,35 @@
   .client-logo-card { padding: 0 12px; }
   .client-logo-card img { height: 48px; }
 
-  /* Mobile: static vertical card layout (no GSAP, cross-browser safe) */
+  /* Mobile: morphing card carousel with overflow containment */
   .wwd-scroll-section { overflow: hidden !important; margin-top: 24px; }
   .wwd-scroll-inner {
     flex-direction: column;
-    height: auto !important;
-    padding: 32px 24px;
+    height: 100vh;
+    height: 100dvh;
+    padding: 20px 24px;
+    overflow: hidden;
   }
-  .wwd-intro { width: 100%; padding-right: 0; margin-bottom: 24px; }
+  .wwd-intro { width: 100%; padding-right: 0; margin-bottom: 0; }
   .wwd-intro .stmt-headline { font-size: 24px; margin-bottom: 10px; }
   .wwd-intro .stmt-sub { font-size: 13px; line-height: 1.5; }
   .wwd-intro .stmt-cta { margin-top: 16px; }
   .wwd-track {
-    flex-direction: column !important;
-    gap: 16px !important;
-    padding: 0 !important;
-    overflow: hidden !important;
     position: relative;
+    flex: 1;
+    flex-direction: row;
+    gap: 0;
+    padding: 24px 0 16px;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
   }
   .service-monolith {
-    position: relative !important;
-    width: 100% !important;
-    height: auto !important;
-    border-radius: 20px !important;
-    background: transparent !important;
-    box-shadow: 0 2px 16px rgba(0,0,0,0.04) !important;
-    transform: none !important;
+    position: absolute;
+    max-width: calc(100vw - 48px);
   }
   .monolith-content {
-    opacity: 1 !important;
-    padding: 20px;
-    transform: none !important;
+    padding: 16px 18px;
   }
   .monolith-num { font-size: 1.4rem; }
   .monolith-header { padding-bottom: 8px; }

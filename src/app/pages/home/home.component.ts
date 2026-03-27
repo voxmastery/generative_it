@@ -85,7 +85,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
 
   private async initServicesScroll() {
     if (window.innerWidth <= 768) {
-      // Mobile: static vertical cards, no GSAP (cross-browser safe)
+      this.initMobileServicesCarousel();
       return;
     }
 
