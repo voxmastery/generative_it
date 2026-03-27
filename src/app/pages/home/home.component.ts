@@ -446,7 +446,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     });
 
     const perCard = 0.24;
-    const totalScroll = 2000;
+    const totalScroll = 3500;
 
     const tl = gsap.timeline({
       scrollTrigger: {
