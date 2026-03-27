@@ -149,7 +149,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       scrollTrigger: {
         trigger: section,
         start: 'top top',
-        end: '+=2000',
+        end: '+=3000',
         pin: true,
         scrub: 0.6,
         anticipatePin: 1,
