@@ -936,6 +936,7 @@
   .wwd-track {
     position: relative;
     flex: 1;
+    width: 100%;
     flex-direction: row;
     gap: 0;
     padding: 24px 0 16px;
