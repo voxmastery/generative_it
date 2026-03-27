@@ -26,9 +26,9 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     // Lenis smooth scroll
     const Lenis = (await import('lenis')).default;
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.6,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      touchMultiplier: 2,
+      touchMultiplier: 1.2,
     });
     this.lenisInstance = lenis;
 
@@ -151,7 +151,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
         start: 'top top',
         end: '+=3000',
         pin: true,
-        scrub: 0.6,
+        scrub: 1,
         anticipatePin: 1,
         invalidateOnRefresh: true,
       }
@@ -251,7 +251,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
         start: 'top top',
         end: '+=1200',
         pin: true,
-        scrub: 0.6,
+        scrub: 1,
         anticipatePin: 1,
         invalidateOnRefresh: true,
       }
@@ -454,7 +454,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
         start: 'top top',
         end: `+=${totalScroll}`,
         pin: true,
-        scrub: 1.2,
+        scrub: 2,
         anticipatePin: 1,
         invalidateOnRefresh: true,
       }
