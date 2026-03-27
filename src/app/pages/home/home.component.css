@@ -179,12 +179,24 @@
 
 @media (max-width: 1024px) {
   .scroll-hint { display: none !important; }
-  .coolshape { display: none !important; }
-  .section-bg { display: none !important; }
+  /* Smaller shapes on tablet */
+  .coolshape { width: 80px !important; opacity: 0.12 !important; }
 }
 @media (max-width: 768px) {
   /* Reset hero opacity since GSAP reveal doesn't run on mobile */
   .hero-badge, .hero-title, .hero-sub, .hero .btn-dark { opacity: 1; }
+  /* Coolshapes visible but contained — no overflow */
+  .coolshape {
+    display: block !important;
+    width: 60px !important;
+    opacity: 0.15 !important;
+    pointer-events: none;
+  }
+  .section-bg {
+    opacity: 0.3 !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+  }
 }
 
 /* Hero entrance — hidden initially, GSAP reveals */
